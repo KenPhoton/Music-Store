@@ -18,7 +18,7 @@ while true; do
 		git pull
 		sudo rm -rf /var/www/html/*
 		sudo cp ./Frontend/* /var/www/html/
-		sudo cp ./PHP/* /var/www/html/
+		sudo cp ./API/* /var/www/html/
 	elif [ $REMOTE = $BASE ]; then
 		echo "Need to push"
 	else
