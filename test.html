@@ -2,30 +2,34 @@
     <head>
     <script>
     function insert() {
-        var productname = "weight set";
-        var fullprice = 129.99;
-        var description = "some equipment";
-        var category = "sports";
-        var picname = "";
-        var jsonPayload = '{"productname" : "' + productname + '", "fullprice" : ' + fullprice + ', "description": "' + description + '", "category": "' + category + '", "picname": "' + picname + '"}';
+        var urlBase = 'http://52.2.112.101/Music-Store/PHP';
+        var extension = "php";
+        var username = "discountadmin";
+        var password = "fhei2h419hno";
+        
+        document.getElementById("place").innerHTML = "";
+        
+        var jsonPayload = '{"username" : "' + username + '", "password" : "' + password + '"}';
+        var url = urlBase + '/login.' + extension;
+        
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://52.2.112.101/Music-Store/PHP/insertproduct.php", true);
+        xhr.open("POST", url, false);
         xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
         try
         {
-            xhr.onreadystatechange = function() 
-            {
-                if (this.readyState == 4 && this.status == 200) 
-                {
-                    alert("hello")
-                    document.getElementById("place").innerHTML = "Product has been added";
-                }
-                else
-                {
-                    alert(this.status)
-                }
-            };
             xhr.send(jsonPayload);
+            
+            var jsonObject = JSON.parse( xhr.responseText );
+            
+            userid = jsonObject.userid;
+            
+            if( userid < 1 )
+            {
+                document.getElementById("place").innerHTML = "User/Password combination incorrect";
+                return;
+            }
+
+            document.getElementById("userName").innerHTML = userid + " Login Successful";
         }
         catch(err)
         {
