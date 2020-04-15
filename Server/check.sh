@@ -16,9 +16,9 @@ while true; do
 	elif [ $LOCAL = $BASE ]; then
 		echo "Need to pull"
 		git pull
-		sudo rm -rf /var/www/html/Music-Store
-		sudo cp ./Frontend/* /var/www/html/
-		sudo cp ./API/* /var/www/html/
+		rm -rf /var/www/html/*
+		sudo cp /var/www/html/Music-Store/Frontend/* /var/www/html/
+		sudo cp /var/www/html/Music-Store/API/* /var/www/html/
 	elif [ $REMOTE = $BASE ]; then
 		echo "Need to push"
 	else
