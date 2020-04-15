@@ -4,7 +4,8 @@
     $password = "jo42hn25yhf92cu";
     $dbname = "discount_db";
 
-    // $_POST = json_decode(file_get_contents('test.json'), true);
+	// $_POST = json_decode(file_get_contents('test.json'), true);
+	$_POST = json_decode(file_get_contents('php://input'), true);
     $discountid = $_POST["discountid"];
     
     // Create connection
