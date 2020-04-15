@@ -2,7 +2,7 @@
 
 # Run this on the server; checks for updates every ~10 seconds
 
-cd ./Music-Store/
+cd /var/www/html/Music-Store
 
 while true; do
     git fetch
@@ -16,7 +16,7 @@ while true; do
 	elif [ $LOCAL = $BASE ]; then
 		echo "Need to pull"
 		git pull
-		rm -rf /var/www/html/*
+		rm -f /var/www/html/*
 		sudo cp /var/www/html/Music-Store/Frontend/* /var/www/html/
 		sudo cp /var/www/html/Music-Store/API/* /var/www/html/
 	elif [ $REMOTE = $BASE ]; then
