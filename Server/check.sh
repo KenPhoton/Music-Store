@@ -16,7 +16,7 @@ while true; do
 	elif [ $LOCAL = $BASE ]; then
 		echo "Need to pull"
 		git pull
-		sudo rm -rf /var/www/html/*
+		sudo rm -rf /var/www/html/Music-Store
 		sudo cp ./Frontend/* /var/www/html/
 		sudo cp ./API/* /var/www/html/
 	elif [ $REMOTE = $BASE ]; then
