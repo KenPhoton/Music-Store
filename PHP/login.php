@@ -14,6 +14,7 @@
 	}
 	else
 	{
+		$_POST = json_decode(file_get_contents('php://input'), true);
 		$passwordFromFront = $_POST["password"];
 		$sql = "SELECT * FROM User where username='" . $_POST["username"] . "'";
 		$result = $conn->query($sql);

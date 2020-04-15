@@ -25,11 +25,11 @@
             
             if( userid < 1 )
             {
-                document.getElementById("place").innerHTML = "User/Password combination incorrect";
+                document.getElementById("place").innerHTML = xhr.responseText;
                 return;
             }
-
-            document.getElementById("userName").innerHTML = userid + " Login Successful";
+            else
+                document.getElementById("place").innerHTML = userid + " Login Successful";
         }
         catch(err)
         {
@@ -44,6 +44,6 @@
     First name: <input type="text" onkeyup="insert()">
     </form>
     <p>Result: <span id="place"></span></p>
-    <button type="button" id="insertbutton" class="buttons" onclick="insert();"> Insert Product </button><br />
+    <button type="button" id="insertbutton" class="buttons" onclick="insert();"> Verify Login </button><br />
     </body>
 </html> 
