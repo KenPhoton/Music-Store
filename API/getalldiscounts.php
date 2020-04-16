@@ -12,8 +12,7 @@
 	}
 	else
 	{
-        //purchaseid,productid,discountid,fname,lname,email,address,creditnum
-        $sql = "SELECT * FROM Purchase";
+        $sql = "SELECT * FROM Discount";
         $result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{
@@ -23,8 +22,8 @@
 				{
 					$results .= ",";
 				}
-				$resultcount++;
-				$results .= '{"purchaseid": "' . $row["purchaseid"] . '","productid": "' . $row["productid"] . '","discountid": "' . $row["discountid"] . '","fname": "' . $row["fname"] . '","lname": "' . $row["lname"] . '","email": "' . $row["email"] . '","address": "' . $row["address"] . '","creditnum": "' . $row["creditnum"] . '"}';
+                $resultcount++;
+				$results .= '{"discountid": "' . $row["discountid"] . '","productid": "' . $row["productid"] . '","discountcode": "' . $row["discountcode"] . '","issuedate": "' . $row["issuedate"] . '","count": "' . $row["count"] . '","active": "' . $row["active"] . '","finalprice": "' . $row["finalprice"] . '"}';
             }
             $conn->close();
             returnWithInfo( $results );
@@ -42,7 +41,7 @@
 	}
 	function returnWithError( $err )
 	{
-		$retValue = '{"purchaseid":"","productid":"","discountid":"","fname":"","lname":"","email":"","address":"","creditnum":"","error":"' . $err . '"}';
+		$retValue = '{"discountid":"","productid":"","discountcode":"","issuedate":"","count":"","active":"","finalprice":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	function returnWithInfo( $results )
