@@ -23,7 +23,7 @@
 					$results .= ",";
 				}
 				$resultcount++;
-				$results .= '{"' . $row["productid"] . '","' . $row["productname"] . '","' . $row["fullprice"] . '","' . $row["picname"] . '"}';
+				$results .= '{"productid": "' . $row["productid"] . '","productname": "' . $row["productname"] . '","fullprice": "' . $row["fullprice"] . '","picname": "' . $row["picname"] . '"}';
             }
             $conn->close();
             returnWithInfo( $results );
