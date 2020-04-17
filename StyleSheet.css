@@ -1,0 +1,50 @@
+
+
+  
+header
+{
+	text-align: center;
+}
+
+body {
+	background: #DDD;
+	
+}
+
+ul
+{
+	text-align: center;
+	margin: 20px 0 0 ;
+    padding: 10px 0;
+	background: #FFF;
+	border-radius: 2px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+li.button {
+	border-right: 2px solid #FFF;
+	display: inline;
+	padding: 10px;
+	background-color: #02ba8f
+}
+
+h2
+{
+	text-align: center;
+}
+
+p
+{
+	text-align: center;
+}
+
+figure
+{
+	text-align: center;
+}
+
+footer
+{
+	text-align: center;
+	padding-top: 80px;
+}
