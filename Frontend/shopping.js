@@ -1,6 +1,4 @@
-
-
-function populate() {
+function getallproducts(productid , productname, fullprice, picname) {
 const xmlhttp = new XMLHttpRequest();
 
 xmlhttp.onreadystatechange = function() {
@@ -9,7 +7,7 @@ xmlhttp.onreadystatechange = function() {
        let response = JSON.parse(xmlhttp.responseText);
  		if(response.error == '')  {
  			for(int i = 0; i < response.length; i++)
- 			generateProduct(response[i].productname, response[i].fullprice);
+ 			generateProduct(response[i].productid, response[i].productname, response[i].fullprice, response[i].picname);
  		}
  			else{
  				alert("populate failed");
@@ -19,10 +17,12 @@ xmlhttp.onreadystatechange = function() {
 
 xmlhttp.open("POST", "getallproducts.php", true);
 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xmlhttp.send(jsonObj);
+xmlhttp.send();
 	}
 }
 
-function generateProduct(productId, price) {
+
+
+function generateProduct(productid , productname, fullprice, picname) {
 //TODO generate product object here
 }
