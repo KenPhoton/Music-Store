@@ -6,8 +6,8 @@ form.addEventListener('submit', ()=>{
 	login(document.getElementById("username").value, document.getElementById("password").value);
 });
 
-function login(name, pass) {
-	let loginInfo = {name: username, pass: pass};
+function login(username, password) {
+	let loginInfo = {username: username, password: password};
 	let jsonObj = JSON.stringify(loginInfo);
 const xmlhttp = new XMLHttpRequest();
 
@@ -24,5 +24,4 @@ xmlhttp.open("POST", "login.php", true);
 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xmlhttp.send(jsonObj);
 }
-
-
+}
