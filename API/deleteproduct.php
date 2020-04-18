@@ -7,12 +7,7 @@
     // $_POST = json_decode(file_get_contents('test.json'), true);
 	// productid/productname/fullprice/description/category/stocked/picname
 	$_POST = json_decode(file_get_contents('php://input'), true);
-    $productname = $_POST["productname"];
-    $fullprice = $_POST["fullprice"];
-    $description = $_POST["description"];
-    $category = $_POST["category"];
-    $stocked = TRUE;
-    $picname = $_POST["picname"];
+    $productid = $_POST["productid"];
     
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -22,15 +17,14 @@
 	}
 	else
 	{
-		$sql = "INSERT INTO Product (productname, fullprice, description, category, stocked, picname) VALUES ('" . $productname . "'," . $fullprice . ",'" . $description . "','" . $category . "'," . $stocked . ",'" . $picname . "')";
+		$sql = "DELETE FROM Product WHERE productid=" . $productid . "";
         if ($conn->query($sql) === TRUE) {
-            $productid = $conn->productid;
             $conn->close();
             returnWithInfo($productid);
         } else {
-			$val = $conn->error;
-			$conn->close();
-            returnWithError($val);
+            $val = $conn->error;
+            $conn->close();
+            returnwithError( $val );
         }
 	}
 	function sendResultInfoAsJson( $obj )

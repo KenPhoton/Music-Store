@@ -17,6 +17,7 @@
     // $_POST = json_decode(file_get_contents('test.json'), true);
     $_POST = json_decode(file_get_contents('php://input'), true);
     $productid = $_POST["productid"];
+    $possiblediscount = $_POST["discountcode"];
     
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -26,7 +27,7 @@
 	}
 	else
 	{
-		$sql = "SELECT * FROM Discount where productid='" . $productid . "' and active='" . 1 . "'";
+		$sql = "SELECT * FROM Discount where productid='" . $productid . "' and discountcode='" . $possiblediscount . "' and active='" . 1 . "'";
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{

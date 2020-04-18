@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Run this on the server; checks for updates every ~10 seconds
+# Run this on the server
 
 cd /var/www/html/Music-Store
 git fetch

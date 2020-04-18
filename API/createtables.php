@@ -27,6 +27,17 @@ if ($conn->connect_error) {
 // }
 
 // // sql to create table
+// $sql = "CREATE TABLE Policy (
+// policyvalue FLOAT(4,2) /* just the value for calculating discounts */
+// )";
+
+// if ($conn->query($sql) === TRUE) {
+//     echo "Table Policy created successfully";
+// } else {
+//     echo "Error creating table: " . $conn->error;
+// }
+
+// // sql to create table
 // $sql = "CREATE TABLE Product (
 // productid INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 // productname VARCHAR(50) NOT NULL, /* name of product */
@@ -51,7 +62,7 @@ if ($conn->connect_error) {
 // issuedate DATE NOT NULL, /* date it was created */
 // count INT NOT NULL, /* number of purchases assoc w/discount; could be found w/query on Purchases too but eh */
 // active BOOLEAN NOT NULL, /* whether discount is valid or not */
-// finalprice FLOAT(7,2) /* final price of product */
+// finaldiscount VARCHAR(20) /* final total discount */
 // )";
 
 // if ($conn->query($sql) === TRUE) {
