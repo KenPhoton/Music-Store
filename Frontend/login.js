@@ -49,7 +49,7 @@ function login()
 		{
 			return;
 		}
-		location.href = 'http://52.2.112.101/Music-Store/Frontend/Admin.html';
+		location.href = 'http://52.2.112.101/Admin.html';
 	}
 	catch(err)
 	{
