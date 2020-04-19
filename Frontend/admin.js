@@ -24,10 +24,10 @@ function loadProducts() {
 	document.getElementById("purchaseUI").style.visibility = 'hidden';
 	document.getElementById("discountUI").style.visibility = 'hidden';
 	document.getElementById("policyUI").style.visibility = 'hidden';
-	searchProducts();
+	adminSearchProducts();
 }
 
-function searchProducts() 
+function adminSearchProducts() 
 {
     var search = document.getElementById("inlineFormInputName").value;
     
