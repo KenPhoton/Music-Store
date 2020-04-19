@@ -6,6 +6,18 @@ function logout() {
 	location.href = 'http://52.2.112.101/';
 }
 
+function hideOrShow (elementId, showState) {
+    var vis = "visible";
+    var dis = "block";
+    if ( !showState)
+    {
+        vis = "hidden";
+        dis = "none";
+    }
+    document.getElementById(elementId).style.visibility=vis;
+    document.getElementById(elementId).style.display=dis;
+}
+
 function loadProducts() {
 	document.getElementById("inlineFormInputName").innerHTML = "";
 	document.getElementById("productUI").style.visibility = 'visible';
