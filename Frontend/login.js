@@ -3,7 +3,7 @@
 
 const form = document.getElementById("form");
 form.addEventListener('submit', ()=>{
-	login(document.getElementById("username").value, document.getElementById("password").value);
+	login(document.getElementById("user").value, document.getElementById("pass").value);
 });
 
 function login(username, password) {
@@ -16,7 +16,7 @@ xmlhttp.onreadystatechange = function() {
        // Typical action to be performed when the document is ready:
        let response = JSON.parse(xmlhttp.responseText);
  		Cookies.set("userId", name, {expires: 7});
- 		(response.error == '') ? window.location.href = 'home.html' : alert("login failed");
+ 		(response.error == '') ? window.location.href = 'index.html' : alert("login failed");
     }
 
 

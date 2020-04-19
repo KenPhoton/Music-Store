@@ -19,12 +19,13 @@
   <div class="left">
     <h1>Login</h1>
     
-    <input type="text" name="username" placeholder="Username" />
-    <input type="password" name="password" placeholder="Password" />
+    <input type="text" id="user" name="username" placeholder="Username" />
+    <input type="password" id="pass" name="password" placeholder="Password" />
 	<form href = "AdminHome.html">
-    <input type="submit" name="signup_submit" value="Login" />
+    <input type="submit" name="signup_submit" onclick="login()" value="Login" />
     </form>   
   </div>
+  <script src="login.js"></script>
 </body>
 
 </html>
