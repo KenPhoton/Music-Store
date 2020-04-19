@@ -49,8 +49,7 @@ function login()
 		{
 			return;
 		}
-		document.getElementById("loginbox").style.visibility = 'hidden';
-		document.getElementById("adminbox").style.visibility = 'visible';
+		location.href = 'http://52.2.112.101/Music-Store/Frontend/Admin.html';
 	}
 	catch(err)
 	{
