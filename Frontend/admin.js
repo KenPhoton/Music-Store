@@ -19,7 +19,7 @@ function hideOrShow (elementId, showState) {
 }
 
 function loadProducts() {
-	document.getElementById("inlineFormInputName").text = "";
+	document.getElementById("inlineFormInputName").value = "";
 	document.getElementById("productUI").style.visibility = 'visible';
 	document.getElementById("purchaseUI").style.visibility = 'hidden';
 	document.getElementById("discountUI").style.visibility = 'hidden';
