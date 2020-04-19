@@ -122,7 +122,7 @@ function editProduct() {
 			var error = jsonObject.error;
 			if (error != "")
 				{
-					confirm("Error editing product.");
+					confirm("Error editing product: " + error);
 				}
 			window.location.reload();
 		}
