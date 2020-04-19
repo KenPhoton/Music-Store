@@ -29,6 +29,7 @@ function loadProducts() {
 
 function loadPurchases() {
 	document.getElementById("productUI").style.visibility = 'hidden';
+	document.getElementById("productList").style.visibility = 'hidden';
 	document.getElementById("purchaseUI").style.visibility = 'visible';
 	document.getElementById("discountUI").style.visibility = 'hidden';
 	document.getElementById("policyUI").style.visibility = 'hidden';
@@ -36,6 +37,7 @@ function loadPurchases() {
 
 function loadDiscounts() {
 	document.getElementById("productUI").style.visibility = 'hidden';
+	document.getElementById("productList").style.visibility = 'hidden';
 	document.getElementById("purchaseUI").style.visibility = 'hidden';
 	document.getElementById("discountUI").style.visibility = 'visible';
 	document.getElementById("policyUI").style.visibility = 'hidden';
@@ -43,6 +45,7 @@ function loadDiscounts() {
 
 function loadPolicies() {
 	document.getElementById("productUI").style.visibility = 'hidden';
+	document.getElementById("productList").style.visibility = 'hidden';
 	document.getElementById("purchaseUI").style.visibility = 'hidden';
 	document.getElementById("discountUI").style.visibility = 'hidden';
 	document.getElementById("policyUI").style.visibility = 'visible';
