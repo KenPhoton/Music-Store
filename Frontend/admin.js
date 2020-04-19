@@ -35,7 +35,8 @@ function searchProducts()
                     hideOrShow( "productList", true );
                     var jsonObject = JSON.parse( xhr.responseText );
                     var table = document.getElementById("productList");
-                    table.deleteTHead();
+					table.deleteTHead();
+					alert(jsonObject);
                     
                     for (var i = 0; i < jsonObject.results.length; i++)
                     {
