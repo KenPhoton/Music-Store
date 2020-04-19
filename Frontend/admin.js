@@ -2,6 +2,7 @@ var APIRoot = "http://52.2.112.101";
 var fileExtension = ".php";
 
 function logout() {
+	localStorage.setItem("userid",-1);
 	location.href = 'http://52.2.112.101/';
 }
 
@@ -12,7 +13,7 @@ function loadProducts() {
 	document.getElementById("policyUI").style.visibility = 'hidden';
 }
 
-function addProduct(productname, fullprice, description, category, stocked, picname) {
+function addProduct() {
 	// let newObj = {productname: productname, fullprice: fullprice, description: description, category: category, stocked: stocked, picname: picname};
 	// let jsonObj = json.stringify(newObj);
 	// const xmlhttp = new XMLHttpRequest();

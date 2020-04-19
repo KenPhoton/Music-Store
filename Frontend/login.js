@@ -49,6 +49,7 @@ function login()
 		{
 			return;
 		}
+		localStorage.setItem("userid",userId);
 		location.href = 'http://52.2.112.101/Admin.html';
 	}
 	catch(err)
