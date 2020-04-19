@@ -34,7 +34,7 @@ function adminSearchProducts()
     if (localStorage.hasOwnProperty("userid"))
     {
         var xhr= new XMLHttpRequest();
-        xhr.open("POST","./getallproducts.php",false);
+        xhr.open("POST","./adminsearchproducts.php",false);
         xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
         var jsonPayload = '{"Search" : "' + search + '"}';
         
