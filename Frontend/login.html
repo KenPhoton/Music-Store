@@ -9,8 +9,7 @@
   <header>
 	<nav> 
 			<a href="index.html" >Home</a>  
-			<a href="index.html">Products</a>  
-			<a href="index.html">Contact us</a> 
+			<a href="Shopping.html">Products</a> 
 	</nav>
   </header>
 
@@ -40,14 +39,13 @@
   <header>
 	<nav> 
 			<a href="index.html" >Home</a>  
-			<a href="index.html">Products</a>  
-			<a href="index.html">Contact us</a> 
+			<a href="Shopping.html">Products</a> 
 	</nav>
   </header>
 
 <body>
   <div id="login-box">
-  <div class="left">
+  <div id="loginUI" class="left">
     <h1>Login</h1>
     
     <input type="text" id="user" name="username" placeholder="Username" />
@@ -56,6 +54,9 @@
       <button type="button" class="btn btn-primary btn-lg" onclick="login()">Login</button>
     </p>
     <p id="loginresult"></p>
+  </div>
+  <div id="adminUI">
+    <button type="button" id="logout" onclick="doLogout();">Logout</button><br />
   </div>
   <script src="login.js"></script>
 </body>

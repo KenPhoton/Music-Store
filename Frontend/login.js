@@ -26,31 +26,34 @@
 // 	}
 // }
 
+var APIRoot = "http://52.2.112.101";
+var fileExtension = ".php";
+
 function login()
 {
-  var login = document.getElementById("user").value;
-  var password = document.getElementById("pass").value;
-  document.getElementById("loginresult").innerHTML = "";
-  
-  var jsonPayload = '{"username" : "' + login + '", "password" : "' + password + '"}';
-  
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "login.php", false);
-  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-  try
-  {
-    xhr.send(jsonPayload);
-    var jsonObject = JSON.parse( xhr.responseText );
-    userId = jsonObject.id;
-    if( userid < 1 )
-    {
-      document.getElementById("loginresult").innerHTML = "User/Password combination incorrect";
-      return;
+	var login = document.getElementById("user").value;
+	var password = document.getElementById("pass").value;
+
+	var jsonPayload = '{"username" : "' + login + '", "password" : "' + password + '"}';
+	var url = APIRoot + '/login' + fileExtension;
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, false);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.send(jsonPayload);
+		var jsonObject = JSON.parse( xhr.responseText );
+		userId = jsonObject.id;
+		if( userId < 1 )
+		{
+			return;
+		}
+		document.getElementById("loginUI").style.visibility = 'hidden';
+		document.getElementById("adminUI").style.visibility = 'visible';
 	}
-	(response.error == '') ? window.location.href = 'index.html' : alert("login failed");
-  }
-  catch(err)
-  {
-    document.getElementById("loginresult").innerHTML = err.message;
-  }
+	catch(err)
+	{
+		alert(err.message);
+	}
 }
