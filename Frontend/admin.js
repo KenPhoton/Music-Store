@@ -6,7 +6,7 @@ function logout() {
 	location.href = 'http://52.2.112.101/';
 }
 
-function loadProducts() {
+function searchProducts() {
 	document.getElementById("productUI").style.visibility = 'visible';
 	document.getElementById("purchaseUI").style.visibility = 'hidden';
 	document.getElementById("discountUI").style.visibility = 'hidden';
