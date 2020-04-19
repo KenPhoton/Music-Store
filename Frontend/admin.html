@@ -9,12 +9,12 @@
 <body>
     <header><h1> Store Management System </h1></header>
     <ul> 
-        <li class="button"><a href="productmanager.html" class="button">Product Manager</a> </li>
-        <li class="button"><a href="purchasehistory.html" class="button">Purchase History</a> </li>
-        <li class="button"><a href="discounts.html" class="button">Discounts</a> </li>
-        <li class="button"><a href="policymanager.html" class="button">Discount Policy</a> </li>
+        <li class="button" onclick="loadProducts()"><a>Product Manager</a> </li>
+        <li class="button" onclick="loadPurchases()"><a>Purchase History</a> </li>
+        <li class="button" onclick="loadDiscounts()"><a>Discounts</a> </li>
+        <li class="button" onclick="loadPolicies()"><a>Policies</a> </li>
     </ul>
-    <div style="visibility: visible" id="productUI">
+    <div style="visibility: hidden" id="productUI">
         <h2>Product Manager</h2>
     </div>
     <div style="visibility: hidden" id="purchaseUI">
@@ -24,7 +24,7 @@
         <h2>Discounts</h2>
     </div>
     <div style="visibility: hidden" id="policyUI">
-        <h2>Discount Policy</h2>
+        <h2>Policies</h2>
     </div>
   <script src="admin.js"></script>
 </body>
