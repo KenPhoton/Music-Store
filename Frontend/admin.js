@@ -18,6 +18,11 @@ function hideOrShow (elementId, showState) {
     document.getElementById(elementId).style.display=dis;
 }
 
+function setUpdateId(val)
+{
+    localStorage.setItem("updateid",val);
+}
+
 function loadProducts() {
 	document.getElementById("inlineFormInputName").value = "";
 	document.getElementById("productUI").style.visibility = 'visible';
@@ -81,15 +86,17 @@ function adminSearchProducts()
                         var newProduct = table.createTHead(localStorage.getItem("userid"));
                         var newProductinfo = newProduct.insertRow(0);
                         newProductinfo.scope = "row";
-                        newProductinfo.value = "1";
-                        newProductinfo.insertCell(0).outerHTML = '<th scope="col">'+(jsonObject.results.length - i)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-                        newProductinfo.insertCell(1).outerHTML = '<th scope="col">'+jsonObjectTwo.productname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-                        newProductinfo.insertCell(2).outerHTML = '<th scope="col">'+jsonObjectTwo.fullprice+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-						newProductinfo.insertCell(3).outerHTML = '<th scope="col">'+jsonObjectTwo.category+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-						newProductinfo.insertCell(4).outerHTML = '<th scope="col">'+jsonObjectTwo.stocked+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newProductinfo.value = "1";
+                        newProductinfo.insertCell(0).outerHTML = '<th style="font-size: medium" scope="col">'+(jsonObject.results.length - i)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        newProductinfo.insertCell(1).outerHTML = '<th style="font-size: medium" scope="col">'+jsonObjectTwo.productname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newProductinfo.insertCell(2).outerHTML = '<th style="font-size: medium" scope="col">'+jsonObjectTwo.fullprice+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        newProductinfo.insertCell(3).outerHTML = '<th style="font-size: medium" scope="col">'+jsonObjectTwo.description+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newProductinfo.insertCell(4).outerHTML = '<th style="font-size: medium" scope="col">'+jsonObjectTwo.category+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newProductinfo.insertCell(5).outerHTML = '<th style="font-size: medium" scope="col">'+jsonObjectTwo.stocked+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        newProductinfo.insertCell(6).outerHTML = '<th style="font-size: medium" scope="col">'+jsonObjectTwo.picname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
                         var productid = jsonObjectTwo.productid;
-                        newProductinfo.insertCell(5).outerHTML = '<th scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setUpdateId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#EditProductModal">Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>';
-                        newProductinfo.insertCell(6).outerHTML = '<th scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" class="btn btn-primary btn" onclick="deleteThis(this, this.value)">Delete</button></th>';
+                        newProductinfo.insertCell(7).outerHTML = '<th style="font-size: medium" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setUpdateId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#EditProductModal">Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>';
+                        newProductinfo.insertCell(8).outerHTML = '<th style="font-size: medium" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" class="btn btn-primary btn" onclick="deleteThis(this, this.value)">Delete</button></th>';
                         //var newRow = table.rows[0];
                         //table.parent.insertBefore(newRow, table.rows[1]);
                         //alert(ContactName);
@@ -103,7 +110,7 @@ function adminSearchProducts()
         }
         catch(err)
         {
-            document.getElementById("contactSearchResult").innerHTML = err.message;
+            document.getElementById("productSearchResult").innerHTML = err.message;
             alert("BIG ERROR BRO");
         }
     }
@@ -186,4 +193,95 @@ function deleteProduct(productname) {
 		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xmlhttp.send(jsonObj);
 	}
+}
+
+// Deletes a table entry.
+function deleteThis(id, val){
+    if(confirm("Are you sure you would like to delete this product?")){
+        id.parentNode.parentNode.parentNode.removeChild(id.parentNode.parentNode);
+        
+        var xhr= new XMLHttpRequest();
+        xhr.open("POST","./deleteproduct.php",false);
+        xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
+
+        var jsonPayload = '{"productid" : "' + val + '"}';
+
+        try
+        {
+            xhr.send(jsonPayload);
+            var jsonObject = JSON.parse( xhr.responseText );
+            var error = jsonObject.error;
+            if (error != "")
+            {
+                confirm("Error deleting product.");
+            }
+        }
+        catch(err)
+        {
+            alert(err.message);
+        }
+    }
+}
+
+// Edits a table data entry. Sets all the fields to an editable text box. 
+function editThis(el){
+    // Replace 'edit' button with a 'save' button
+    var row = el.parentNode.parentNode;
+    row.getElementByClassName
+    var editButton = row.childNodes[15].childNodes[0];
+    var productname = row.childNodes[3];
+    var fullprice = row.childNodes[5];
+    var description = row.childNodes[7];
+	var category = row.childNodes[9];
+	var stocked = row.childNodes[11];
+	var picname = row.childNodes[13];
+
+    if (editButton.innerHTML == "Edit") {
+		editButton.innerHTML = "Save";
+
+		// Make all fields for this row editable
+		productname.contentEditable = "true";
+		fullprice.contentEditable = "true";
+		description.contentEditable = "true";
+		category.contentEditable = "true";
+		stocked.contentEditable = "true";
+		picname.contentEditable = "true";
+		productname.style.backgroundColor = "white";
+		fullprice.style.backgroundColor = "white";
+		description.style.backgroundColor = "white";
+		category.style.backgroundColor = "white";
+		stocked.style.backgroundColor = "white";
+		picname.style.backgroundColor = "white";
+		productname.style.border = "thin solid #2db2ff";
+		fullprice.style.border = "thin solid #2db2ff";
+		description.style.border = "thin solid #2db2ff";
+		category.style.border = "thin solid #2db2ff";
+		stocked.style.border = "thin solid #2db2ff";
+		picname.style.border = "thin solid #2db2ff";
+    }
+
+    // Wait for user to click 'save' button
+    else {
+		// Upon clicking 'save' button, change all the fields back to html, but with new values.
+		editButton.innerHTML = "Edit";
+
+		productname.contentEditable = "false";
+		fullprice.contentEditable = "false";
+		description.contentEditable = "false";
+		category.contentEditable = "false";
+		stocked.contentEditable = "false";
+		picname.contentEditable = "false";
+		productname.style.backgroundColor = "initial";
+		fullprice.style.backgroundColor = "initial";
+		description.style.backgroundColor = "initial";
+		category.style.backgroundColor = "initial";
+		stocked.style.backgroundColor = "initial";
+		picname.style.backgroundColor = "initial";
+		productname.style.border = "initial";
+		fullprice.style.border = "initial";
+		description.style.border = "initial";
+		category.style.border = "initial";
+		stocked.style.border = "initial";
+		picname.style.border = "initial";    
+    }
 }
