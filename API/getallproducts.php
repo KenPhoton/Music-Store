@@ -23,7 +23,7 @@
 					$results .= ",";
 				}
 				$resultcount++;
-				$results .= '{"productid": "' . $row["productid"] . '","productname": "' . $row["productname"] . '","fullprice": "' . $row["fullprice"] . '","picname": "' . $row["picname"] . '"}';
+				$results .= '{"productid": "' . $row["productid"] . '","productname": "' . $row["productname"] . '","fullprice": "' . $row["fullprice"] . '","description": "' . $row["description"] . '","category": "' . $row["category"] . '","stocked": "' . $row["stocked"] . '","picname": "' . $row["picname"] . '"}';
             }
             $conn->close();
             returnWithInfo( $results );
