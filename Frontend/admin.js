@@ -6,11 +6,77 @@ function logout() {
 	location.href = 'http://52.2.112.101/';
 }
 
-function searchProducts() {
+function loadProducts() {
+	document.getElementById("inlineFormInputName").innerHTML = "";
 	document.getElementById("productUI").style.visibility = 'visible';
 	document.getElementById("purchaseUI").style.visibility = 'hidden';
 	document.getElementById("discountUI").style.visibility = 'hidden';
 	document.getElementById("policyUI").style.visibility = 'hidden';
+	searchProducts();
+}
+
+function searchProducts() 
+{
+    var search = document.getElementById("inlineFormInputName").value;
+    
+    if (localStorage.hasOwnProperty("userid"))
+    {
+        var xhr= new XMLHttpRequest();
+        xhr.open("POST","./searchproducts.php",false);
+        xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
+        var jsonPayload = '{"Search" : "' + search + '"}';
+        
+        try
+        {
+            xhr.onreadystatechange = function()
+            {
+                if (this.readyState == 4 && this.status == 200)
+                {
+                    hideOrShow( "productList", true );
+                    var jsonObject = JSON.parse( xhr.responseText );
+                    var table = document.getElementById("productList");
+                    table.deleteTHead();
+                    
+                    for (var i = 0; i < jsonObject.results.length; i++)
+                    {
+                        //var opt = document.createElement("option");
+                        var jsonObjectTwo = jsonObject.results[i];
+                        var productname = jsonObjectTwo.productname;
+                        var newProduct = table.createTHead(localStorage.getItem("userid"));
+                        var newProductinfo = newProduct.insertRow(0);
+                        newProductinfo.scope = "row";
+                        newProductinfo.value = "1";
+                        newProductinfo.insertCell(0).outerHTML = '<th scope="col">'+(jsonObject.results.length - i)+"&nbsp;&nbsp;</th>";
+                        newProductinfo.insertCell(1).outerHTML = '<th scope="col">'+jsonObjectTwo.productname+"&nbsp;&nbsp;</th>";
+                        newProductinfo.insertCell(2).outerHTML = '<th scope="col">'+jsonObjectTwo.fullprice+"&nbsp;&nbsp;&nbsp;</th>";
+                        newProductinfo.insertCell(3).outerHTML = '<th scope="col">'+jsonObjectTwo.description+"&nbsp;&nbsp;</th>";
+						newProductinfo.insertCell(4).outerHTML = '<th scope="col">'+jsonObjectTwo.category+"</th>";
+						newProductinfo.insertCell(5).outerHTML = '<th scope="col">'+jsonObjectTwo.stocked+"</th>";
+						newProductinfo.insertCell(5).outerHTML = '<th scope="col">'+jsonObjectTwo.picname+"</th>";
+                        var productid = jsonObjectTwo.productid;
+                        newProductinfo.insertCell(7).outerHTML = '<th scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setUpdateId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#EditProductModal">Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>';
+                        newProductinfo.insertCell(8).outerHTML = '<th scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" class="btn btn-primary btn" onclick="deleteThis(this, this.value)">Delete</button></th>';
+                        //var newRow = table.rows[0];
+                        //table.parent.insertBefore(newRow, table.rows[1]);
+                        //alert(ContactName);
+                        //opt.text = ContactName;
+                        //opt.value = "";
+                        //contactList.options.add(opt);
+                    }
+                }
+            };
+            xhr.send(jsonPayload);
+        }
+        catch(err)
+        {
+            document.getElementById("contactSearchResult").innerHTML = err.message;
+            alert("BIG ERROR BRO");
+        }
+    }
+    else 
+    {
+        window.location.assign("index.html");
+    }
 }
 
 function addProduct() {
