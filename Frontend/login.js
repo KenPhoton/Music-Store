@@ -49,8 +49,8 @@ function login()
 		{
 			return;
 		}
-		document.getElementById("loginUI").style.visibility = 'hidden';
-		document.getElementById("adminUI").style.visibility = 'visible';
+		document.getElementById("loginbox").style.visibility = 'hidden';
+		document.getElementById("adminbox").style.visibility = 'visible';
 	}
 	catch(err)
 	{
