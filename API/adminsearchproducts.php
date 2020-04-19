@@ -27,7 +27,9 @@
 				{
 					$searchResults .= ",";
 				}
-				$searchCount++;
+                $searchCount++;
+                if ($row["picname"]=="")
+                    $row["picname"] = "NULL NO PICTURE";
 				$searchResults .= '{"productid": "' . $row["productid"] . '","productname": "' . $row["productname"] . '","fullprice": "' . $row["fullprice"] . '","description": "' . $row["description"] . '","category": "' . $row["category"] . '","stocked": "' . $row["stocked"] . '","picname": "' . $row["picname"] . '"}';
             }
             $conn->close();
