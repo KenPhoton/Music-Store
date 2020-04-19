@@ -85,13 +85,11 @@ function adminSearchProducts()
                         newProductinfo.insertCell(0).outerHTML = '<th scope="col">'+(jsonObject.results.length - i)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
                         newProductinfo.insertCell(1).outerHTML = '<th scope="col">'+jsonObjectTwo.productname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
                         newProductinfo.insertCell(2).outerHTML = '<th scope="col">'+jsonObjectTwo.fullprice+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-                        newProductinfo.insertCell(3).outerHTML = '<th scope="col">'+jsonObjectTwo.description+"&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-						newProductinfo.insertCell(4).outerHTML = '<th scope="col">'+jsonObjectTwo.category+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-						newProductinfo.insertCell(5).outerHTML = '<th scope="col">'+jsonObjectTwo.stocked+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-						newProductinfo.insertCell(6).outerHTML = '<th scope="col">'+jsonObjectTwo.picname+"&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newProductinfo.insertCell(3).outerHTML = '<th scope="col">'+jsonObjectTwo.category+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newProductinfo.insertCell(4).outerHTML = '<th scope="col">'+jsonObjectTwo.stocked+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
                         var productid = jsonObjectTwo.productid;
-                        newProductinfo.insertCell(7).outerHTML = '<th scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setUpdateId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#EditProductModal">Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>';
-                        newProductinfo.insertCell(8).outerHTML = '<th scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" class="btn btn-primary btn" onclick="deleteThis(this, this.value)">Delete</button></th>';
+                        newProductinfo.insertCell(5).outerHTML = '<th scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setUpdateId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#EditProductModal">Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>';
+                        newProductinfo.insertCell(6).outerHTML = '<th scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" class="btn btn-primary btn" onclick="deleteThis(this, this.value)">Delete</button></th>';
                         //var newRow = table.rows[0];
                         //table.parent.insertBefore(newRow, table.rows[1]);
                         //alert(ContactName);
