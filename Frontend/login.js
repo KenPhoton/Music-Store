@@ -44,7 +44,7 @@ function login()
 	{
 		xhr.send(jsonPayload);
 		var jsonObject = JSON.parse( xhr.responseText );
-		userId = jsonObject.id;
+		userId = jsonObject.userid;
 		if( userId < 1 )
 		{
 			return;
