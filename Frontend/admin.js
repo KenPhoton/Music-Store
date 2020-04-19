@@ -19,12 +19,33 @@ function hideOrShow (elementId, showState) {
 }
 
 function loadProducts() {
-	document.getElementById("inlineFormInputName").innerHTML = "";
+	document.getElementById("inlineFormInputName").text = "";
 	document.getElementById("productUI").style.visibility = 'visible';
 	document.getElementById("purchaseUI").style.visibility = 'hidden';
 	document.getElementById("discountUI").style.visibility = 'hidden';
 	document.getElementById("policyUI").style.visibility = 'hidden';
 	adminSearchProducts();
+}
+
+function loadPurchases() {
+	document.getElementById("productUI").style.visibility = 'hidden';
+	document.getElementById("purchaseUI").style.visibility = 'visible';
+	document.getElementById("discountUI").style.visibility = 'hidden';
+	document.getElementById("policyUI").style.visibility = 'hidden';
+}
+
+function loadDiscounts() {
+	document.getElementById("productUI").style.visibility = 'hidden';
+	document.getElementById("purchaseUI").style.visibility = 'hidden';
+	document.getElementById("discountUI").style.visibility = 'visible';
+	document.getElementById("policyUI").style.visibility = 'hidden';
+}
+
+function loadPolicies() {
+	document.getElementById("productUI").style.visibility = 'hidden';
+	document.getElementById("purchaseUI").style.visibility = 'hidden';
+	document.getElementById("discountUI").style.visibility = 'hidden';
+	document.getElementById("policyUI").style.visibility = 'visible';
 }
 
 function adminSearchProducts() 
@@ -36,7 +57,7 @@ function adminSearchProducts()
         var xhr= new XMLHttpRequest();
         xhr.open("POST","./adminsearchproducts.php",false);
         xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
-        var jsonPayload = '{"Search" : "' + search + '"}';
+        var jsonPayload = '{"search" : "' + search + '"}';
         
         try
         {
@@ -59,12 +80,12 @@ function adminSearchProducts()
                         newProductinfo.scope = "row";
                         newProductinfo.value = "1";
                         newProductinfo.insertCell(0).outerHTML = '<th scope="col">'+(jsonObject.results.length - i)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-                        newProductinfo.insertCell(1).outerHTML = '<th scope="col">'+jsonObjectTwo.productname+"&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        newProductinfo.insertCell(1).outerHTML = '<th scope="col">'+jsonObjectTwo.productname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
                         newProductinfo.insertCell(2).outerHTML = '<th scope="col">'+jsonObjectTwo.fullprice+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
                         newProductinfo.insertCell(3).outerHTML = '<th scope="col">'+jsonObjectTwo.description+"&nbsp;&nbsp;&nbsp;&nbsp;</th>";
 						newProductinfo.insertCell(4).outerHTML = '<th scope="col">'+jsonObjectTwo.category+"&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-						newProductinfo.insertCell(5).outerHTML = '<th scope="col">'+jsonObjectTwo.stocked+"&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-						newProductinfo.insertCell(5).outerHTML = '<th scope="col">'+jsonObjectTwo.picname+"&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newProductinfo.insertCell(5).outerHTML = '<th scope="col">'+jsonObjectTwo.stocked+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newProductinfo.insertCell(6).outerHTML = '<th scope="col">'+jsonObjectTwo.picname+"&nbsp;&nbsp;&nbsp;&nbsp;</th>";
                         var productid = jsonObjectTwo.productid;
                         newProductinfo.insertCell(7).outerHTML = '<th scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setUpdateId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#EditProductModal">Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>';
                         newProductinfo.insertCell(8).outerHTML = '<th scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" class="btn btn-primary btn" onclick="deleteThis(this, this.value)">Delete</button></th>';
