@@ -23,39 +23,6 @@ function setUpdateId(val)
     localStorage.setItem("updateid",val);
 }
 
-function loadProducts() {
-	document.getElementById("inlineFormInputName").value = "";
-	document.getElementById("productUI").style.visibility = 'visible';
-	document.getElementById("purchaseUI").style.visibility = 'hidden';
-	document.getElementById("discountUI").style.visibility = 'hidden';
-	document.getElementById("policyUI").style.visibility = 'hidden';
-	adminSearchProducts();
-}
-
-function loadPurchases() {
-	document.getElementById("productUI").style.visibility = 'hidden';
-	document.getElementById("productList").style.visibility = 'hidden';
-	document.getElementById("purchaseUI").style.visibility = 'visible';
-	document.getElementById("discountUI").style.visibility = 'hidden';
-	document.getElementById("policyUI").style.visibility = 'hidden';
-}
-
-function loadDiscounts() {
-	document.getElementById("productUI").style.visibility = 'hidden';
-	document.getElementById("productList").style.visibility = 'hidden';
-	document.getElementById("purchaseUI").style.visibility = 'hidden';
-	document.getElementById("discountUI").style.visibility = 'visible';
-	document.getElementById("policyUI").style.visibility = 'hidden';
-}
-
-function loadPolicies() {
-	document.getElementById("productUI").style.visibility = 'hidden';
-	document.getElementById("productList").style.visibility = 'hidden';
-	document.getElementById("purchaseUI").style.visibility = 'hidden';
-	document.getElementById("discountUI").style.visibility = 'hidden';
-	document.getElementById("policyUI").style.visibility = 'visible';
-}
-
 function adminSearchProducts() 
 {
     var search = document.getElementById("inlineFormInputName").value;
@@ -95,7 +62,7 @@ function adminSearchProducts()
 						newProductinfo.insertCell(5).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.stocked+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
                         newProductinfo.insertCell(6).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.picname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
                         var productid = jsonObjectTwo.productid;
-                        newProductinfo.insertCell(7).outerHTML = '<th style="font-size: small" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setUpdateId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#EditProductModal">Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>';
+                        newProductinfo.insertCell(7).outerHTML = '<th style="font-size: small" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setUpdateId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#EditProductModal">Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>';
                         newProductinfo.insertCell(8).outerHTML = '<th style="font-size: small" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" class="btn btn-primary btn" onclick="deleteThis(this, this.value)">Delete</button></th>';
                         //var newRow = table.rows[0];
                         //table.parent.insertBefore(newRow, table.rows[1]);
@@ -118,6 +85,53 @@ function adminSearchProducts()
     {
         window.location.assign("index.html");
     }
+}
+
+function editProduct() {
+	var productname = document.getElementById("productname2").value;
+	var fullprice = document.getElementById("fullprice2").value;
+	var description = document.getElementById("description2").value;
+	var category = document.getElementById("category2").value;
+	var stocked = document.getElementById("stocked2").value;
+	var picname = document.getElementById("picname2").value;
+		
+	document.getElementById("productname2").value = "";
+	document.getElementById("fullprice2").value = "";
+	document.getElementById("description2").value = "";
+	document.getElementById("category2").value = "";
+	document.getElementById("stocked2").value = "";
+	document.getElementById("picname2").value = "";
+		
+	if(productname == "" || fullprice == "" || description == "" || category == "" || stocked == "")
+	{
+		alert("Product not edited. Missing information");
+	}
+	else
+	{
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "./editproduct.php", false);
+		xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
+		var id = localStorage.getItem("userid");
+		var productid = localStorage.getItem("Updateid");
+
+		var jsonPayload = '{"productid" : "' + productid + '", "productname" : "' + productname + '", "fullprice" : "' + fullprice + '", "description" : "' + description + '", "category" : "' + category + '", "stocked" : "' + stocked + '", "picname" : "' + picname + '"}';
+
+		try
+		{
+			xhr.send(jsonPayload);
+			var jsonObject = JSON.parse( xhr.responseText );
+			var error = jsonObject.error;
+			if (error != "")
+				{
+					confirm("Error editing product.");
+				}
+			window.location.reload();
+		}
+		catch(err)
+		{
+			alert(err.message);
+		}
+	}
 }
 
 function addProduct() {
