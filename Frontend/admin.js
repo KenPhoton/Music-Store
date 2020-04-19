@@ -2,7 +2,7 @@ var APIRoot = "http://52.2.112.101";
 var fileExtension = ".php";
 
 function logout() {
-	localStorage.setItem("userid",-1);
+	localStorage.removeItem("userid");
 	location.href = 'http://52.2.112.101/';
 }
 
@@ -54,16 +54,15 @@ function adminSearchProducts()
                         var newProductinfo = newProduct.insertRow(0);
                         newProductinfo.scope = "row";
 						newProductinfo.value = "1";
-                        newProductinfo.insertCell(0).outerHTML = '<th style="font-size: small" scope="col">'+(jsonObject.results.length - i)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-                        newProductinfo.insertCell(1).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.productname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-						newProductinfo.insertCell(2).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.fullprice+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-                        newProductinfo.insertCell(3).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.description+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-						newProductinfo.insertCell(4).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.category+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-						newProductinfo.insertCell(5).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.stocked+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-                        newProductinfo.insertCell(6).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.picname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        newProductinfo.insertCell(0).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.productname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newProductinfo.insertCell(1).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.fullprice+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        newProductinfo.insertCell(2).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.description+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newProductinfo.insertCell(3).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.category+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newProductinfo.insertCell(4).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.stocked+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        newProductinfo.insertCell(5).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.picname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
                         var productid = jsonObjectTwo.productid;
-                        newProductinfo.insertCell(7).outerHTML = '<th style="font-size: small" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setUpdateId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#EditProductModal">Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>';
-                        newProductinfo.insertCell(8).outerHTML = '<th style="font-size: small" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" class="btn btn-primary btn" onclick="deleteThis(this, this.value)">Delete</button></th>';
+                        newProductinfo.insertCell(6).outerHTML = '<th style="font-size: small" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setUpdateId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#EditProductModal">Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>';
+                        newProductinfo.insertCell(7).outerHTML = '<th style="font-size: small" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" class="btn btn-primary btn" onclick="deleteThis(this, this.value)">Delete</button></th>';
                         //var newRow = table.rows[0];
                         //table.parent.insertBefore(newRow, table.rows[1]);
                         //alert(ContactName);
@@ -158,7 +157,7 @@ function addProduct() {
 	var fullprice = document.getElementById("fullprice").value;
 	var description = document.getElementById("description").value;
 	var category = document.getElementById("category").value;
-	var stocked = document.getElementById("stocked").value;
+	var stockedstring = document.getElementById("stocked").value;
 	var picname = document.getElementById("picname").value;
 
 	var jsonPayload = '{"productname" : "' + productname + '", "fullprice" : "' + fullprice + '", "description" : "' + description + '", "category" : "' + category + '", "stocked" : "' + stocked + '", "picname" : "' + picname + '"}';
@@ -171,7 +170,6 @@ function addProduct() {
 	{
 		xhr.send(jsonPayload);
 		var jsonObject = JSON.parse( xhr.responseText );
-		userId = jsonObject.userid;
 		if( jsonObject.error != '' )
 		{
 			alert(jsonObject.error);
@@ -242,13 +240,13 @@ function editThis(el){
     // Replace 'edit' button with a 'save' button
     var row = el.parentNode.parentNode;
     row.getElementByClassName
-    var editButton = row.childNodes[15].childNodes[0];
-    var productname = row.childNodes[3];
-    var fullprice = row.childNodes[5];
-    var description = row.childNodes[7];
-	var category = row.childNodes[9];
-	var stocked = row.childNodes[11];
-	var picname = row.childNodes[13];
+    var editButton = row.childNodes[13].childNodes[0];
+    var productname = row.childNodes[1];
+    var fullprice = row.childNodes[3];
+    var description = row.childNodes[5];
+	var category = row.childNodes[7];
+	var stocked = row.childNodes[9];
+	var picname = row.childNodes[11];
 
     if (editButton.innerHTML == "Edit") {
 		editButton.innerHTML = "Save";
