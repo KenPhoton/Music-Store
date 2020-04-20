@@ -21,14 +21,14 @@
 
             <form>
                 <div class="form-row align-items-center">
-                    <h3>Discount Policy is currently set to: <b id="discountPolicy"></b></h3>
+                    <p>Discount Policy is currently set to: <span id="discountPolicy"></span></p>
                     <p>This value is used along with the number of buyers to determine what the final discount is for a product-discount pair.</p>
-                    <div class="col-auto my-1">
-                        <label class="sr-only" id="searchButton" for="inlineFormInputName">Edit Policy</label>
-                        <input type="text" class="form-control" id="inlineFormInputName" pattern="[0-9.]+" title="Invalid input" placeholder="Edit Policy">
-                        <button type="button" class="btn btn-primary btn" onclick="editPolicy()">Submit</button>
-                    </div>
                 </div>
+                <div class="col-auto my-1">
+                    <label class="sr-only" id="policyButton" for="inlineFormInputName">Edit Policy</label>
+                    <input type="text" class="form-control" id="inlineFormInputName" pattern="[0-9.]+" title="Invalid input" placeholder="Edit Policy">
+                    <button type="button" class="btn btn-primary btn" onclick="editPolicy()">Submit</button>
+                </div>>
             </form>
 
             <pre></pre>

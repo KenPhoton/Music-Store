@@ -277,6 +277,45 @@ function searchPurchaseHistory()
     }
 }
 
+function editPolicy() {
+	if (localStorage.hasOwnProperty("userid"))
+    {
+		var policyvalue = document.getElementById("inlineFormInputName").value;
+		var xhr= new XMLHttpRequest();
+        xhr.open("POST","./editpolicy.php",false);
+        xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
+        var jsonPayload = '{"policyvalue" : "' + policyvalue + '"}';
+        
+        try
+        {
+            xhr.onreadystatechange = function()
+            {
+                if (this.readyState == 4 && this.status == 200)
+                {
+					var jsonObject = JSON.parse( xhr.responseText );
+					if (jsonObject.error == "") 
+					{
+						document.getElementById("discountPolicy").innerHTML = jsonObject.policyvalue;
+					}
+					else
+					{
+						alert("Failed to update policy: " + jsonObject.error);
+					}
+				}
+            };
+            xhr.send(jsonPayload);
+        }
+        catch(err)
+        {
+            alert("BIG ERROR BRO: " + err);
+		}
+	}
+	else
+	{
+		window.location.assign("index.html");
+	}
+}
+
 function getDiscounts() 
 {
     if (localStorage.hasOwnProperty("userid"))
