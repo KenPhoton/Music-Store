@@ -114,6 +114,7 @@ function editProduct() {
 		var productid = localStorage.getItem("Updateid");
 
 		var jsonPayload = '{"productid" : "' + productid + '", "productname" : "' + productname + '", "fullprice" : "' + fullprice + '", "description" : "' + description + '", "category" : "' + category + '", "stocked" : "' + stocked + '", "picname" : "' + picname + '"}';
+		confirm("JSON: " + jsonPayload);
 
 		try
 		{

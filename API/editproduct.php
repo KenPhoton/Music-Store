@@ -28,7 +28,7 @@
         }
         else
         {
-            if ($picname != "") {
+            if (!($picname == "")) {
                 $sql = "UPDATE Product SET picname='" . $picname . "' WHERE productid='" . $productid . "'";
                 if ($conn->query($sql) != TRUE)
                 {
