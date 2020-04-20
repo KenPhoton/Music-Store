@@ -5,8 +5,6 @@
     $dbname = "discount_db";
 
 	$conn = new mysqli($servername, $username, $password, $dbname);
-
-    $conn = new mysqli("poosddb.ckbkojoxq1y0.us-east-1.rds.amazonaws.com", "poosdAdmin", "DontForgetThis321", "poosdDB");
 	if ($conn->connect_error)
 	{
 		returnWithError( $conn->connect_error );
