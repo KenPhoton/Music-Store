@@ -332,13 +332,13 @@ function getDiscounts()
                 if (this.readyState == 4 && this.status == 200)
                 {
 					var jsonObject = JSON.parse( xhr2.responseText );
-					if (jsonObject.err == '')
+					if (jsonObject.error == '')
 					{
 						document.getElementById("discountPolicy").innerHTML = " " + jsonObject.policyvalue + " ";
 					}
 					else
 					{
-						document.getElementById("discountPolicy").innerHTML = "Error retrieving current policy.";
+						document.getElementById("discountPolicy").innerHTML = jsonObject.error;
 					}
                 }
             };

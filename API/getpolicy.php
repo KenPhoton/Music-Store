@@ -12,7 +12,7 @@
 	}
 	else
 	{
-		$sql = "SELECT * FROM Policy";
+		$sql = "SELECT * FROM Policy WHERE policyid=1";
         $result = $conn->query($sql);
         if ($conn->query($sql) === TRUE) {
             if ($result->num_rows > 0)
