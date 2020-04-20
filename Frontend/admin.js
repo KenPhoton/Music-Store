@@ -242,7 +242,7 @@ function searchPurchaseHistory()
 						var namestring = jsonObjectTwo.fname + " " + jsonObjectTwo.lname;
                         newPurchaseinfo.insertCell(0).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.purchaseid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
 						newPurchaseinfo.insertCell(1).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.productid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-						newPurchaseinfo.insertCell(2).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.discountid+"&nbsp;&nbsp;&nbsp;</th>";
+						newPurchaseinfo.insertCell(2).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.discountid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
                         newPurchaseinfo.insertCell(3).outerHTML = '<th style="font-size: small" scope="col">'+namestring+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
 						newPurchaseinfo.insertCell(4).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.email+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
 						newPurchaseinfo.insertCell(5).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.address+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
