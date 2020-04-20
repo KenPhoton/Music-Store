@@ -34,7 +34,7 @@
             }
             else
             {
-                if (!($picname == "")) {
+                if (strlen($picname) > 0) {
                     $sql = "UPDATE Product SET picname='" . $picname . "' WHERE productid='" . $productid . "'";
                     if ($conn->query($sql) != TRUE)
                     {
@@ -48,9 +48,11 @@
                         returnWithError( "Error updating product" );
                     }
                 }
-                $conn->close();
-                $message = '{"error":"", "result":"edited product"}';
-                sendResultInfoAsJson($message);
+                else {
+                    $conn->close();
+                    $message = '{"error":"", "result":"edited product"}';
+                    sendResultInfoAsJson($message);
+                }
             }
         }
     }
