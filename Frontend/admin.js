@@ -281,6 +281,28 @@ function getDiscounts()
 {
     if (localStorage.hasOwnProperty("userid"))
     {
+		var xhr= new XMLHttpRequest();
+        xhr.open("POST","./getpolicy.php",false);
+        xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
+        var jsonPayload = '{}';
+        
+        try
+        {
+            xhr.onreadystatechange = function()
+            {
+                if (this.readyState == 4 && this.status == 200)
+                {
+					var jsonObject = JSON.parse( xhr.responseText );
+					document.getElementById("discountPolicy").innerHTML = jsonObject.policyvalue;
+                }
+            };
+            xhr.send(jsonPayload);
+        }
+        catch(err)
+        {
+            alert("BIG ERROR BRO: " + err);
+        }
+
         var xhr= new XMLHttpRequest();
         xhr.open("POST","./getalldiscounts.php",false);
         xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
