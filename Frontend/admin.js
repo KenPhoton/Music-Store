@@ -236,16 +236,24 @@ function searchPurchaseHistory()
                     hideOrShow( "purchaseList", true );
                     var jsonObject = JSON.parse( xhr.responseText );
                     var table = document.getElementById("purchaseList");
-                    table.deleteTHead();
-                    table.innerHTML = '<colgroup><col span="1" style="width: 7.5%;"><col span="1" style="width: 7.5%;"><col span="1" style="width: 20%;"><col span="1" style="width: 20%;"><col span="1" style="width: 15%;"><col span="1" style="width: 15%;"><col span="1" style="width: 15;"></colgroup>';
+					table.deleteTHead();
                     
                     for (var i = jsonObject.results.length - 1; i >= 0; i--)
                     {
                         //var opt = document.createElement("option");
                         var jsonObjectTwo = jsonObject.results[i];
-                        var newPurchase = table.createTHead();
-                        newPurchase.outerHTML = '<thead class="thead-light"></thead>';
-                        newPurchase.innerHTML = '<tr><th style="font-size: small" scope="col">'+jsonObjectTwo.purchaseid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>"+'<th style="font-size: small" scope="col">'+jsonObjectTwo.productid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>"+'<th style="font-size: small" scope="col">'+jsonObjectTwo.discountid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>"+'<th style="font-size: small" scope="col">'+namestring+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>"+'<th style="font-size: small" scope="col">'+jsonObjectTwo.email+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>"+'<th style="font-size: small" scope="col">'+jsonObjectTwo.address+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>"+'<th style="font-size: small" scope="col">'+jsonObjectTwo.creditnum+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th></tr>";
+                        var newPurchase = table.createTHead(localStorage.getItem("userid"));
+                        var newPurchaseinfo = newPurchase.insertRow(0);
+                        newPurchaseinfo.scope = "row";
+						newPurchaseinfo.value = "1";
+						var namestring = jsonObjectTwo.fname + " " + jsonObjectTwo.lname;
+                        newPurchaseinfo.insertCell(0).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.purchaseid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newPurchaseinfo.insertCell(1).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.productid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newPurchaseinfo.insertCell(2).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.discountid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        newPurchaseinfo.insertCell(3).outerHTML = '<th style="font-size: small" scope="col">'+namestring+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newPurchaseinfo.insertCell(4).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.email+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newPurchaseinfo.insertCell(5).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.address+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        newPurchaseinfo.insertCell(6).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.creditnum+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
                         //var newRow = table.rows[0];
                         //table.parent.insertBefore(newRow, table.rows[1]);
                         //alert(ContactName);
