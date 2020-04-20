@@ -45,7 +45,7 @@ function adminSearchProducts()
                     var table = document.getElementById("productList");
 					table.deleteTHead();
                     
-                    for (var i = 0; i < jsonObject.results.length; i++)
+                    for (var i = jsonObject.results.length - 1; i >= 0; i--)
                     {
                         //var opt = document.createElement("option");
                         var jsonObjectTwo = jsonObject.results[i];
@@ -231,7 +231,7 @@ function searchPurchaseHistory()
                     var table = document.getElementById("purchaseList");
 					table.deleteTHead();
                     
-                    for (var i = 0; i < jsonObject.results.length; i++)
+                    for (var i = jsonObject.results.length - 1; i >= 0; i--)
                     {
                         //var opt = document.createElement("option");
                         var jsonObjectTwo = jsonObject.results[i];
@@ -262,6 +262,63 @@ function searchPurchaseHistory()
         {
             document.getElementById("purchaseSearchResult").innerHTML = err.message;
             alert("BIG ERROR BRO");
+        }
+    }
+    else 
+    {
+        window.location.assign("index.html");
+    }
+}
+
+function getDiscounts() 
+{
+    if (localStorage.hasOwnProperty("userid"))
+    {
+        var xhr= new XMLHttpRequest();
+        xhr.open("POST","./getalldiscounts.php",false);
+        xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
+        var jsonPayload = '{}';
+        
+        try
+        {
+            xhr.onreadystatechange = function()
+            {
+                if (this.readyState == 4 && this.status == 200)
+                {
+                    hideOrShow( "discountList", true );
+                    var jsonObject = JSON.parse( xhr.responseText );
+                    var table = document.getElementById("discountList");
+					table.deleteTHead();
+                    
+                    for (var i = jsonObject.results.length - 1; i >= 0; i--)
+                    {
+                        //var opt = document.createElement("option");
+                        var jsonObjectTwo = jsonObject.results[i];
+                        var newPurchase = table.createTHead(localStorage.getItem("userid"));
+                        var newPurchaseinfo = newPurchase.insertRow(0);
+                        newPurchaseinfo.scope = "row";
+						newPurchaseinfo.value = "1";
+                        newPurchaseinfo.insertCell(0).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.discountid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newPurchaseinfo.insertCell(1).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.productid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newPurchaseinfo.insertCell(2).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.discountcode+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        newPurchaseinfo.insertCell(3).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.issuedate+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newPurchaseinfo.insertCell(4).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.count+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newPurchaseinfo.insertCell(5).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.active+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        newPurchaseinfo.insertCell(6).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.finaldiscount+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        //var newRow = table.rows[0];
+                        //table.parent.insertBefore(newRow, table.rows[1]);
+                        //alert(ContactName);
+                        //opt.text = ContactName;
+                        //opt.value = "";
+                        //contactList.options.add(opt);
+                    }
+                }
+            };
+            xhr.send(jsonPayload);
+        }
+        catch(err)
+        {
+            alert("BIG ERROR BRO: " + err);
         }
     }
     else 

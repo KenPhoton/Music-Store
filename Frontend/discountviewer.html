@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    </head>
+    <body onload="getDiscounts()">
+        <header><h1> Store Management System </h1></header>
+        <ul> 
+            <li class="button"><a href="productmanager.html" class="button">Product Manager</a></li>
+            <li class="button"><a href="purchasehistory.html" class="button">Purchase History</a></li>
+            <li class="button"><a href="discountviewer.html" class="button">View Discounts</a></li>
+            <li class="button"><a href="index.html" class="button" onclick="logout()">Logout</a></li>
+        </ul>
+        <div class="container">  
+            <h2>Discount List</h2>
+            <pre></pre>
+            <div class="col-auto my-1">
+                <table class="table table-striped" style="width: 100%">
+                    <colgroup>
+                        <col span="1" style="width: 3%;">
+                        <col span="1" style="width: 5%;">
+                        <col span="1" style="width: 22%;">
+                        <col span="1" style="width: 15%;">
+                        <col span="1" style="width: 15%;">
+                        <col span="1" style="width: 10;">
+                        <col span="1" style="width: 10;">
+                    </colgroup>
+                    <thead class="thead-dark">
+                        <tr>
+                        <th style="font-size: small" scope="col">DID</th>
+                        <th style="font-size: small" scope="col">PID</th>
+                        <th style="font-size: small" scope="col">Code</th>
+                        <th style="font-size: small" scope="col">Issue Date</th>
+                        <th style="font-size: small" scope="col">Count</th>
+                        <th style="font-size: small" scope="col">Active</th>
+                        <th style="font-size: small" scope="col">Final Discount</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="col-auto my-1">
+                <table id="discountList" style="visibility:hidden" class="table table-striped">
+                </table>
+            </div>
+        </div>
+        <script src="admin.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    </body>
+</html>
