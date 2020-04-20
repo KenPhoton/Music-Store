@@ -245,16 +245,13 @@ function searchPurchaseHistory()
                         var jsonObjectTwo = jsonObject.results[i];
                         var newPurchase = table.createTHead();
                         newPurchase.outerHTML = '<thead class="thead-light"></thead>';
-                        var newPurchaseinfo = newPurchase.insertRow(0);
-                        newPurchaseinfo.outerHTML = '<tr scope="row"></tr>';
-						var namestring = jsonObjectTwo.fname + " " + jsonObjectTwo.lname;
-                        newPurchaseinfo.innerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.purchaseid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>"+
+                        newPurchase.innerHTML = '<tr><th style="font-size: small" scope="col">'+jsonObjectTwo.purchaseid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>"+
                         '<th style="font-size: small" scope="col">'+jsonObjectTwo.productid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>"+
 						'<th style="font-size: small" scope="col">'+jsonObjectTwo.discountid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>"+
                         '<th style="font-size: small" scope="col">'+namestring+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>"+
 						'<th style="font-size: small" scope="col">'+jsonObjectTwo.email+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>"+
 						'<th style="font-size: small" scope="col">'+jsonObjectTwo.address+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>"+
-                        '<th style="font-size: small" scope="col">'+jsonObjectTwo.creditnum+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        '<th style="font-size: small" scope="col">'+jsonObjectTwo.creditnum+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th></tr>";
                         //var newRow = table.rows[0];
                         //table.parent.insertBefore(newRow, table.rows[1]);
                         //alert(ContactName);
