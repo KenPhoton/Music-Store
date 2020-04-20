@@ -157,7 +157,7 @@ function addProduct() {
 	var fullprice = document.getElementById("fullprice").value;
 	var description = document.getElementById("description").value;
 	var category = document.getElementById("category").value;
-	var stockedstring = document.getElementById("stocked").value;
+	var stocked = document.getElementById("stocked").value;
 	var picname = document.getElementById("picname").value;
 
 	var jsonPayload = '{"productname" : "' + productname + '", "fullprice" : "' + fullprice + '", "description" : "' + description + '", "category" : "' + category + '", "stocked" : "' + stocked + '", "picname" : "' + picname + '"}';

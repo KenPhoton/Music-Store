@@ -11,7 +11,7 @@
     $fullprice = $_POST["fullprice"];
     $description = $_POST["description"];
     $category = $_POST["category"];
-    $stocked = TRUE;
+    $stocked = $_POST["stocked"];
     $picname = $_POST["picname"];
     
     // Create connection
