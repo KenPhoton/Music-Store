@@ -26,7 +26,7 @@
             returnWithError("Price must be numeric.");
         }
         else {
-            $sql = "UPDATE Product SET productname='" . $productname . "', fullprice='" . $fullprice . "', description='" . $description . "', category='" . $category . "', stocked='" . $stocked . "' WHERE productid='" . $productid . "'";
+            $sql = "UPDATE Product SET productname='" . $productname . "', fullprice='" . $fullprice . "', description='" . $description . "', category='" . $category . "', stocked='" . $stocked . "', picname='" . $picname . "' WHERE productid='" . $productid . "'";
             if ($conn->query($sql) != TRUE)
             {
                 $conn->close();
@@ -34,24 +34,9 @@
             }
             else
             {
-                if (strlen($picname) > 0) {
-                    $sql = "UPDATE Product SET picname='" . $picname . "' WHERE productid='" . $productid . "'";
-                    if ($conn->query($sql) != TRUE)
-                    {
-                        $conn->close();
-                        $message = '{"error":"", "result":"edited product"}';
-                        sendResultInfoAsJson($message);
-                    }
-                    else
-                    {
-                        returnWithError( $conn->error() );
-                    }
-                }
-                else {
-                    $conn->close();
-                    $message = '{"error":"", "result":"edited product"}';
-                    sendResultInfoAsJson($message);
-                }
+                $conn->close();
+                $message = '{"error":"", "result":"edited product"}';
+                sendResultInfoAsJson($message);
             }
         }
     }
