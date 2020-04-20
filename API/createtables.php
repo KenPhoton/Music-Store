@@ -46,7 +46,6 @@ if ($conn->connect_error) {
 // description TEXT NOT NULL, /* description of product */
 // category VARCHAR(30) NOT NULL, /* for admin purposes, product insertion includes category */
 // stocked BOOLEAN NOT NULL, /* whether product is available or not (yes -> appears in search results) */
-// picname VARCHAR(50) /* admin has access to repo to add images, this field helps retrieve them, should probably add default pic for when no image is on file */
 // )";
 
 // if ($conn->query($sql) === TRUE) {

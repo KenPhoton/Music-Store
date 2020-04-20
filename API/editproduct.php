@@ -18,7 +18,6 @@
         $description = $_POST["description"];
         $category = $_POST["category"];
         $stocked = $_POST["stocked"];
-        $picname = $_POST["picname"];
 
         if ($stocked != 0 && $stocked != 1)
             returnWithError("Stocked must be 0 or 1.");
@@ -26,7 +25,7 @@
             returnWithError("Price must be numeric.");
         }
         else {
-            $sql = "UPDATE Product SET productname='" . $productname . "', fullprice='" . $fullprice . "', description='" . $description . "', category='" . $category . "', stocked='" . $stocked . "', picname='" . $picname . "' WHERE productid='" . $productid . "'";
+            $sql = "UPDATE Product SET productname='" . $productname . "', fullprice='" . $fullprice . "', description='" . $description . "', category='" . $category . "', stocked='" . $stocked . "' WHERE productid='" . $productid . "'";
             if ($conn->query($sql) != TRUE)
             {
                 $conn->close();

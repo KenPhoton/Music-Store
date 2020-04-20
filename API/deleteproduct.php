@@ -5,7 +5,7 @@
     $dbname = "discount_db";
 
     // $_POST = json_decode(file_get_contents('test.json'), true);
-	// productid/productname/fullprice/description/category/stocked/picname
+	// productid/productname/fullprice/description/category/stocked
 	$_POST = json_decode(file_get_contents('php://input'), true);
     $productid = $_POST["productid"];
     

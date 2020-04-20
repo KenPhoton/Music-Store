@@ -23,7 +23,7 @@
 					$results .= ",";
 				}
 				$resultcount++;
-				$results .= '{"productid": "' . $row["productid"] . '","productname": "' . $row["productname"] . '","fullprice": "' . $row["fullprice"] . '","description": "' . $row["description"] . '","category": "' . $row["category"] . '","stocked": "' . $row["stocked"] . '","picname": "' . $row["picname"] . '"}';
+				$results .= '{"productid": "' . $row["productid"] . '","productname": "' . $row["productname"] . '","fullprice": "' . $row["fullprice"] . '","description": "' . $row["description"] . '","category": "' . $row["category"] . '","stocked": "' . $row["stocked"] . '"}';
             }
             $conn->close();
             returnWithInfo( $results );
@@ -41,7 +41,7 @@
 	}
 	function returnWithError( $err )
 	{
-		$retValue = '{"productid":"","productname":"","fullprice":"","picname":"","error":"' . $err . '"}';
+		$retValue = '{"productid":"","productname":"","fullprice":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	function returnWithInfo( $results )

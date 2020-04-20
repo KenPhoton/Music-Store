@@ -13,14 +13,13 @@
 	else
 	{
 		// $_POST = json_decode(file_get_contents('test.json'), true);
-		// productid/productname/fullprice/description/category/stocked/picname
+		// productid/productname/fullprice/description/category/stocked
 		$_POST = json_decode(file_get_contents('php://input'), true);
 		$productname = $_POST["productname"];
 		$fullprice = $_POST["fullprice"];
 		$description = $_POST["description"];
 		$category = $_POST["category"];
 		$stocked = $_POST["stocked"];
-		$picname = $_POST["picname"];
 
 		if ($stocked != 0 && $stocked != 1)
             returnWithError("Stocked must be 0 or 1.");
@@ -28,7 +27,7 @@
             returnWithError("Price must be numeric.");
 		}
 		else {
-			$sql = "INSERT INTO Product (productname, fullprice, description, category, stocked, picname) VALUES ('" . $productname . "'," . $fullprice . ",'" . $description . "','" . $category . "'," . $stocked . ",'" . $picname . "')";
+			$sql = "INSERT INTO Product (productname, fullprice, description, category, stocked) VALUES ('" . $productname . "'," . $fullprice . ",'" . $description . "','" . $category . "'," . $stocked . ")";
 			if ($conn->query($sql) === TRUE) {
 				$productid = $conn->productid;
 				$conn->close();

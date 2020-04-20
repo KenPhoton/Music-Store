@@ -14,10 +14,10 @@
 	} 
 	else
 	{
-        // product has productid/productname/fullprice/description/category/stocked/picname
-		// BUT only return id/name/price/picname, and only search thru name/descript/category
+        // product has productid/productname/fullprice/description/category/stocked
+		// BUT only return id/name/price, and only search thru name/descript/category
 		$_POST = json_decode(file_get_contents('php://input'), true);
-		$sql = "SELECT productid,productname,fullprice,picname from Product where stocked=1 and productname like '%" . $_POST["search"] . "%' or category like '%" . $_POST["search"] . "%' or description like '%" . $_POST["search"] . "%'";
+		$sql = "SELECT productid,productname,fullprice from Product where stocked=1 and productname like '%" . $_POST["search"] . "%' or category like '%" . $_POST["search"] . "%' or description like '%" . $_POST["search"] . "%'";
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{
@@ -28,7 +28,7 @@
 					$searchResults .= ",";
 				}
 				$searchCount++;
-				$searchResults .= '{"productid": "' . $row["productid"] . '","productname": "' . $row["productname"] . '","fullprice": "' . $row["fullprice"] . '","description": "' . $row["description"] . '","category": "' . $row["category"] . '","stocked": "' . $row["stocked"] . '","picname": "' . $row["picname"] . '"}';
+				$searchResults .= '{"productid": "' . $row["productid"] . '","productname": "' . $row["productname"] . '","fullprice": "' . $row["fullprice"] . '","description": "' . $row["description"] . '","category": "' . $row["category"] . '","stocked": "' . $row["stocked"] . '"}';
             }
             $conn->close();
             returnWithInfo( $searchResults );
@@ -48,7 +48,7 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"productid":"","productname":"","fullprice":"","description":"","category":"","stocked":"","picname":"","error":"' . $err . '"}';
+		$retValue = '{"productid":"","productname":"","fullprice":"","description":"","category":"","stocked":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	

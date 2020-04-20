@@ -65,10 +65,9 @@ function adminSearchProducts()
                         newProductinfo.insertCell(3).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.description+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
 						newProductinfo.insertCell(4).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.category+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
 						newProductinfo.insertCell(5).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.stocked+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-                        newProductinfo.insertCell(6).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.picname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
                         var productid = jsonObjectTwo.productid;
-                        newProductinfo.insertCell(7).outerHTML = '<th style="font-size: x-small" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setUpdateId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#EditProductModal">Edit</button><button type="button" value="'+jsonObjectTwo.productid+'" class="btn btn-primary btn" onclick="deleteThis(this, this.value)">Delete</button></th>';
-                        // newProductinfo.insertCell(8).outerHTML = '<th style="font-size: x-small" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" class="btn btn-primary btn" onclick="deleteThis(this, this.value)">Delete</button></th>';
+                        newProductinfo.insertCell(6).outerHTML = '<th style="font-size: x-small" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setUpdateId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#EditProductModal">Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>';
+                        newProductinfo.insertCell(7).outerHTML = '<th style="font-size: x-small" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" class="btn btn-primary btn" onclick="deleteThis(this, this.value)">Delete</button></th>';
                         //var newRow = table.rows[0];
                         //table.parent.insertBefore(newRow, table.rows[1]);
                         //alert(ContactName);
@@ -98,14 +97,12 @@ function editProduct() {
 	var description = document.getElementById("description2").value;
 	var category = document.getElementById("category2").value;
 	var stocked = document.getElementById("stocked2").value;
-	var picname = document.getElementById("picname2").value;
 		
 	document.getElementById("productname2").value = "";
 	document.getElementById("fullprice2").value = "";
 	document.getElementById("description2").value = "";
 	document.getElementById("category2").value = "";
 	document.getElementById("stocked2").value = "";
-	document.getElementById("picname2").value = "";
 		
 	if(productname == "" || fullprice == "" || description == "" || category == "" || stocked == "")
 	{
@@ -119,7 +116,7 @@ function editProduct() {
 		var id = localStorage.getItem("userid");
 		var productid = localStorage.getItem("updateid");
 
-		var jsonPayload = '{"productid" : "' + productid + '", "productname" : "' + productname + '", "fullprice" : "' + fullprice + '", "description" : "' + description + '", "category" : "' + category + '", "stocked" : "' + stocked + '", "picname" : "' + picname + '"}';
+		var jsonPayload = '{"productid" : "' + productid + '", "productname" : "' + productname + '", "fullprice" : "' + fullprice + '", "description" : "' + description + '", "category" : "' + category + '", "stocked" : "' + stocked + '"}';
 		
 		try
 		{
@@ -140,7 +137,7 @@ function editProduct() {
 }
 
 function addProduct() {
-	// let newObj = {productname: productname, fullprice: fullprice, description: description, category: category, stocked: stocked, picname: picname};
+	// let newObj = {productname: productname, fullprice: fullprice, description: description, category: category, stocked: stocked};
 	// let jsonObj = json.stringify(newObj);
 	// const xmlhttp = new XMLHttpRequest();
 
@@ -164,9 +161,8 @@ function addProduct() {
 	var description = document.getElementById("description").value;
 	var category = document.getElementById("category").value;
 	var stocked = document.getElementById("stocked").value;
-	var picname = document.getElementById("picname").value;
 
-	var jsonPayload = '{"productname" : "' + productname + '", "fullprice" : "' + fullprice + '", "description" : "' + description + '", "category" : "' + category + '", "stocked" : "' + stocked + '", "picname" : "' + picname + '"}';
+	var jsonPayload = '{"productname" : "' + productname + '", "fullprice" : "' + fullprice + '", "description" : "' + description + '", "category" : "' + category + '", "stocked" : "' + stocked + '"}';
 	var url = APIRoot + '/insertproduct' + fileExtension;
 	
 	if(productname == "" || fullprice == "" || description == "" || category == "" || stocked == "")
@@ -440,14 +436,13 @@ function editThis(el){
     // Replace 'edit' button with a 'save' button
     var row = el.parentNode.parentNode;
     row.getElementByClassName
-	var editButton = row.childNodes[15].childNodes[0];
+	var editButton = row.childNodes[13].childNodes[0];
 	var productid = row.childNode[1];
     var productname = row.childNodes[3];
     var fullprice = row.childNodes[5];
     var description = row.childNodes[7];
 	var category = row.childNodes[9];
 	var stocked = row.childNodes[11];
-	var picname = row.childNodes[13];
 
     if (editButton.innerHTML == "Edit") {
 		editButton.innerHTML = "Save";
@@ -459,21 +454,18 @@ function editThis(el){
 		description.contentEditable = "true";
 		category.contentEditable = "true";
 		stocked.contentEditable = "true";
-		picname.contentEditable = "true";
 		productid.style.backgroundColor = "white";
 		productname.style.backgroundColor = "white";
 		fullprice.style.backgroundColor = "white";
 		description.style.backgroundColor = "white";
 		category.style.backgroundColor = "white";
 		stocked.style.backgroundColor = "white";
-		picname.style.backgroundColor = "white";
 		productid.style.border = "thin solid #2db2ff";
 		productname.style.border = "thin solid #2db2ff";
 		fullprice.style.border = "thin solid #2db2ff";
 		description.style.border = "thin solid #2db2ff";
 		category.style.border = "thin solid #2db2ff";
 		stocked.style.border = "thin solid #2db2ff";
-		picname.style.border = "thin solid #2db2ff";
     }
 
     // Wait for user to click 'save' button
@@ -487,20 +479,17 @@ function editThis(el){
 		description.contentEditable = "false";
 		category.contentEditable = "false";
 		stocked.contentEditable = "false";
-		picname.contentEditable = "false";
 		productid.style.backgroundColor = "initial";
 		productname.style.backgroundColor = "initial";
 		fullprice.style.backgroundColor = "initial";
 		description.style.backgroundColor = "initial";
 		category.style.backgroundColor = "initial";
 		stocked.style.backgroundColor = "initial";
-		picname.style.backgroundColor = "initial";
 		productid.style.border = "initial";
 		productname.style.border = "initial";
 		fullprice.style.border = "initial";
 		description.style.border = "initial";
 		category.style.border = "initial";
 		stocked.style.border = "initial";
-		picname.style.border = "initial";    
     }
 }
