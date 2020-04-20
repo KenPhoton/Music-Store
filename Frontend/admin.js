@@ -164,27 +164,34 @@ function addProduct() {
 	var jsonPayload = '{"productname" : "' + productname + '", "fullprice" : "' + fullprice + '", "description" : "' + description + '", "category" : "' + category + '", "stocked" : "' + stocked + '", "picname" : "' + picname + '"}';
 	var url = APIRoot + '/insertproduct' + fileExtension;
 	
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, false);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
+	if(productname == "" || fullprice == "" || description == "" || category == "" || stocked == "")
 	{
-		xhr.send(jsonPayload);
-		var jsonObject = JSON.parse( xhr.responseText );
-		if( jsonObject.error != '' )
-		{
-			alert(jsonObject.error);
-			return;
-		}
-		else
-		{
-			alert("Successful insertion!");
-			window.location.reload();
-		}
+		alert("Product not added. Missing information");
 	}
-	catch(err)
+	else
 	{
-		alert(err.message);
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", url, false);
+		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+		try
+		{
+			xhr.send(jsonPayload);
+			var jsonObject = JSON.parse( xhr.responseText );
+			if( jsonObject.error != '' )
+			{
+				alert(jsonObject.error);
+				return;
+			}
+			else
+			{
+				alert("Successful insertion!");
+				window.location.reload();
+			}
+		}
+		catch(err)
+		{
+			alert(err.message);
+		}
 	}
 }
 
