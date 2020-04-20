@@ -111,7 +111,7 @@ function editProduct() {
 		xhr.open("POST", "./editproduct.php", false);
 		xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
 		var id = localStorage.getItem("userid");
-		var productid = localStorage.getItem("Updateid");
+		var productid = localStorage.getItem("updateid");
 
 		var jsonPayload = '{"productid" : "' + productid + '", "productname" : "' + productname + '", "fullprice" : "' + fullprice + '", "description" : "' + description + '", "category" : "' + category + '", "stocked" : "' + stocked + '", "picname" : "' + picname + '"}';
 		confirm("JSON: " + jsonPayload);
