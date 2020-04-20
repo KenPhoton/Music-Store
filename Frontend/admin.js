@@ -246,16 +246,15 @@ function searchPurchaseHistory()
                         var newPurchase = table.createTHead();
                         newPurchase.outerHTML = '<thead class="thead-light"></thead>';
                         var newPurchaseinfo = newPurchase.insertRow(0);
-                        newPurchaseinfo.scope = "row";
-						newPurchaseinfo.value = "1";
+                        newPurchaseinfo.outerHTML = '<tr scope="row"></tr>';
 						var namestring = jsonObjectTwo.fname + " " + jsonObjectTwo.lname;
-                        newPurchaseinfo.insertCell(0).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.purchaseid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-						newPurchaseinfo.insertCell(1).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.productid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-						newPurchaseinfo.insertCell(2).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.discountid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-                        newPurchaseinfo.insertCell(3).outerHTML = '<th style="font-size: small" scope="col">'+namestring+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-						newPurchaseinfo.insertCell(4).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.email+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-						newPurchaseinfo.insertCell(5).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.address+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-                        newPurchaseinfo.insertCell(6).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.creditnum+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        newPurchaseinfo.innerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.purchaseid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>"+
+                        '<th style="font-size: small" scope="col">'+jsonObjectTwo.productid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>"+
+						'<th style="font-size: small" scope="col">'+jsonObjectTwo.discountid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>"+
+                        '<th style="font-size: small" scope="col">'+namestring+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>"+
+						'<th style="font-size: small" scope="col">'+jsonObjectTwo.email+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>"+
+						'<th style="font-size: small" scope="col">'+jsonObjectTwo.address+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>"+
+                        '<th style="font-size: small" scope="col">'+jsonObjectTwo.creditnum+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
                         //var newRow = table.rows[0];
                         //table.parent.insertBefore(newRow, table.rows[1]);
                         //alert(ContactName);
