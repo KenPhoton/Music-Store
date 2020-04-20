@@ -242,7 +242,8 @@ function searchPurchaseHistory()
                     {
                         //var opt = document.createElement("option");
                         var jsonObjectTwo = jsonObject.results[i];
-                        var newPurchase = table.createTHead(localStorage.getItem("userid"));
+                        var newPurchase = table.createTHead();
+                        newPurchase.class="thead-light";
                         var newPurchaseinfo = newPurchase.insertRow(0);
                         newPurchaseinfo.scope = "row";
 						newPurchaseinfo.value = "1";
