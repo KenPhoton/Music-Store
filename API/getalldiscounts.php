@@ -23,7 +23,7 @@
 					$results .= ",";
 				}
                 $resultcount++;
-				$results .= '{"discountid": "' . $row["discountid"] . '","productid": "' . $row["productid"] . '","discountcode": "' . $row["discountcode"] . '","issuedate": "' . $row["issuedate"] . '","count": "' . $row["count"] . '","active": "' . $row["active"] . '","finalprice": "' . $row["finalprice"] . '"}';
+				$results .= '{"discountid": "' . $row["discountid"] . '","productid": "' . $row["productid"] . '","discountcode": "' . $row["discountcode"] . '","issuedate": "' . $row["issuedate"] . '","count": "' . $row["count"] . '","active": "' . $row["active"] . '","finaldiscount": "' . $row["finaldiscount"] . '"}';
             }
             $conn->close();
             returnWithInfo( $results );
@@ -41,7 +41,7 @@
 	}
 	function returnWithError( $err )
 	{
-		$retValue = '{"discountid":"","productid":"","discountcode":"","issuedate":"","count":"","active":"","finalprice":"","error":"' . $err . '"}';
+		$retValue = '{"discountid":"","productid":"","discountcode":"","issuedate":"","count":"","active":"","finaldiscount":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	function returnWithInfo( $results )
