@@ -54,15 +54,16 @@ function adminSearchProducts()
                         var newProductinfo = newProduct.insertRow(0);
                         newProductinfo.scope = "row";
 						newProductinfo.value = "1";
-                        newProductinfo.insertCell(0).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.productname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-						newProductinfo.insertCell(1).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.fullprice+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-                        newProductinfo.insertCell(2).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.description+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-						newProductinfo.insertCell(3).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.category+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-						newProductinfo.insertCell(4).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.stocked+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-                        newProductinfo.insertCell(5).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.picname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        newProductinfo.insertCell(0).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.productid+"&nbsp;</th>";
+						newProductinfo.insertCell(1).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.productname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newProductinfo.insertCell(2).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.fullprice+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        newProductinfo.insertCell(3).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.description+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newProductinfo.insertCell(4).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.category+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newProductinfo.insertCell(5).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.stocked+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        newProductinfo.insertCell(6).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.picname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
                         var productid = jsonObjectTwo.productid;
-                        newProductinfo.insertCell(6).outerHTML = '<th style="font-size: small" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setUpdateId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#EditProductModal">Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>';
-                        newProductinfo.insertCell(7).outerHTML = '<th style="font-size: small" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" class="btn btn-primary btn" onclick="deleteThis(this, this.value)">Delete</button></th>';
+                        newProductinfo.insertCell(7).outerHTML = '<th style="font-size: small" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setUpdateId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#EditProductModal">Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>';
+                        newProductinfo.insertCell(8).outerHTML = '<th style="font-size: small" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" class="btn btn-primary btn" onclick="deleteThis(this, this.value)">Delete</button></th>';
                         //var newRow = table.rows[0];
                         //table.parent.insertBefore(newRow, table.rows[1]);
                         //alert(ContactName);
@@ -241,30 +242,34 @@ function editThis(el){
     // Replace 'edit' button with a 'save' button
     var row = el.parentNode.parentNode;
     row.getElementByClassName
-    var editButton = row.childNodes[13].childNodes[0];
-    var productname = row.childNodes[1];
-    var fullprice = row.childNodes[3];
-    var description = row.childNodes[5];
-	var category = row.childNodes[7];
-	var stocked = row.childNodes[9];
-	var picname = row.childNodes[11];
+	var editButton = row.childNodes[15].childNodes[0];
+	var productid = row.childNode[1];
+    var productname = row.childNodes[3];
+    var fullprice = row.childNodes[5];
+    var description = row.childNodes[7];
+	var category = row.childNodes[9];
+	var stocked = row.childNodes[11];
+	var picname = row.childNodes[13];
 
     if (editButton.innerHTML == "Edit") {
 		editButton.innerHTML = "Save";
 
 		// Make all fields for this row editable
+		productid.contentEditable = "true";
 		productname.contentEditable = "true";
 		fullprice.contentEditable = "true";
 		description.contentEditable = "true";
 		category.contentEditable = "true";
 		stocked.contentEditable = "true";
 		picname.contentEditable = "true";
+		productid.style.backgroundColor = "white";
 		productname.style.backgroundColor = "white";
 		fullprice.style.backgroundColor = "white";
 		description.style.backgroundColor = "white";
 		category.style.backgroundColor = "white";
 		stocked.style.backgroundColor = "white";
 		picname.style.backgroundColor = "white";
+		productid.style.border = "thin solid #2db2ff";
 		productname.style.border = "thin solid #2db2ff";
 		fullprice.style.border = "thin solid #2db2ff";
 		description.style.border = "thin solid #2db2ff";
@@ -278,18 +283,21 @@ function editThis(el){
 		// Upon clicking 'save' button, change all the fields back to html, but with new values.
 		editButton.innerHTML = "Edit";
 
+		productid.contentEditable = "false";
 		productname.contentEditable = "false";
 		fullprice.contentEditable = "false";
 		description.contentEditable = "false";
 		category.contentEditable = "false";
 		stocked.contentEditable = "false";
 		picname.contentEditable = "false";
+		productid.style.backgroundColor = "initial";
 		productname.style.backgroundColor = "initial";
 		fullprice.style.backgroundColor = "initial";
 		description.style.backgroundColor = "initial";
 		category.style.backgroundColor = "initial";
 		stocked.style.backgroundColor = "initial";
 		picname.style.backgroundColor = "initial";
+		productid.style.border = "initial";
 		productname.style.border = "initial";
 		fullprice.style.border = "initial";
 		description.style.border = "initial";
