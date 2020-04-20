@@ -29,7 +29,7 @@ if ($conn->connect_error) {
 // // sql to create table
 // $sql = "CREATE TABLE Policy (
 // policyid INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, /* apparently necessary */
-// policyvalue FLOAT(4,2) /* just the value for calculating discounts */
+// policyvalue FLOAT(4,2) NOT NULL /* just the value for calculating discounts */
 // )";
 
 // if ($conn->query($sql) === TRUE) {
