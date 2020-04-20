@@ -14,13 +14,17 @@
 	{
         $_POST = json_decode(file_get_contents('php://input'), true);
         $policyvalue = $_POST["policyvalue"];
-		$sql = "UPDATE Policy SET policyvalue='" . $policyvalue . "'";
-        if ($conn->query($sql) === TRUE) {
-            $conn->close();
-            returnWithInfo($policyvalue);
-        } else {
-            $conn->close();
-            returnWithError($conn->error);
+        if (!is_numeric($policyvalue))
+            returnWithError("Invalid input");
+        else {
+            $sql = "UPDATE Policy SET policyvalue='" . $policyvalue . "'";
+            if ($conn->query($sql) === TRUE) {
+                $conn->close();
+                returnWithInfo($policyvalue);
+            } else {
+                $conn->close();
+                returnWithError($conn->error);
+            }
         }
 	}
 	function sendResultInfoAsJson( $obj )

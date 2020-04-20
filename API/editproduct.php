@@ -20,31 +20,38 @@
         $stocked = $_POST["stocked"];
         $picname = $_POST["picname"];
 
-        $sql = "UPDATE Product SET productname='" . $productname . "', fullprice='" . $fullprice . "', description='" . $description . "', category='" . $category . "', stocked='" . $stocked . "' WHERE productid='" . $productid . "'";
-        if ($conn->query($sql) != TRUE)
-        {
-            $conn->close();
-            returnWithError( "Error updating product" );
+        if ($stocked != 0 && $stocked != 1)
+            returnWithError("Stocked must be 0 or 1.");
+        else if (!is_numeric($fullprice)) {
+            returnWithError("Price must be numeric.");
         }
-        else
-        {
-            if (!($picname == "")) {
-                $sql = "UPDATE Product SET picname='" . $picname . "' WHERE productid='" . $productid . "'";
-                if ($conn->query($sql) != TRUE)
-                {
-                    $conn->close();
-                    $message = '{"error":"", "result":"edited product"}';
-                    sendResultInfoAsJson($message);
-                }
-                else
-                {
-                    $conn->close();
-                    returnWithError( "Error updating product" );
-                }
+        else {
+            $sql = "UPDATE Product SET productname='" . $productname . "', fullprice='" . $fullprice . "', description='" . $description . "', category='" . $category . "', stocked='" . $stocked . "' WHERE productid='" . $productid . "'";
+            if ($conn->query($sql) != TRUE)
+            {
+                $conn->close();
+                returnWithError( "Error updating product" );
             }
-            $conn->close();
-            $message = '{"error":"", "result":"edited product"}';
-            sendResultInfoAsJson($message);
+            else
+            {
+                if (!($picname == "")) {
+                    $sql = "UPDATE Product SET picname='" . $picname . "' WHERE productid='" . $productid . "'";
+                    if ($conn->query($sql) != TRUE)
+                    {
+                        $conn->close();
+                        $message = '{"error":"", "result":"edited product"}';
+                        sendResultInfoAsJson($message);
+                    }
+                    else
+                    {
+                        $conn->close();
+                        returnWithError( "Error updating product" );
+                    }
+                }
+                $conn->close();
+                $message = '{"error":"", "result":"edited product"}';
+                sendResultInfoAsJson($message);
+            }
         }
     }
 
