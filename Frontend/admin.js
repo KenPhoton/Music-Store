@@ -323,7 +323,7 @@ function getDiscounts()
 		var xhr2= new XMLHttpRequest();
         xhr2.open("POST","./getpolicy.php",false);
         xhr2.setRequestHeader("Content-type","application/json; charset=UTF-8");
-        var jsonPayload = '{}';
+        var jsonPayload2 = '{}';
         
         try
         {
@@ -331,18 +331,19 @@ function getDiscounts()
             {
                 if (this.readyState == 4 && this.status == 200)
                 {
-					var jsonObject = JSON.parse( xhr2.responseText );
-					if (jsonObject.error == '')
+					var jsonObject2 = JSON.parse( xhr2.responseText );
+					if (jsonObject2.error == '')
 					{
-						document.getElementById("discountPolicy").innerHTML = " " + jsonObject.policyvalue + " ";
+						confirm(jsonObject2.policyvalue)
+						document.getElementById("discountPolicy").innerHTML = " " + jsonObject2.policyvalue + " ";
 					}
 					else
 					{
-						document.getElementById("discountPolicy").innerHTML = jsonObject.error;
+						document.getElementById("discountPolicy").innerHTML = jsonObject2.error;
 					}
                 }
             };
-            xhr2.send(jsonPayload);
+            xhr2.send(jsonPayload2);
         }
         catch(err)
         {
