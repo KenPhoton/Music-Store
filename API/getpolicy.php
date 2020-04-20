@@ -14,25 +14,18 @@
 	{
 		$sql = "SELECT * FROM Policy WHERE policyid=1";
         $result = $conn->query($sql);
-        if ($result === TRUE) {
-            if ($result->num_rows > 0)
-            {
-                $row = $result->fetch_assoc();
-                $policyvalue = $row["policyvalue"];
-                $conn->close();
-                returnWithInfo( $policyvalue );
-            }
-            else
-            {
-                $conn->close();
-                returnWithError( "No Records Found" );
-            }
-        }
-        else
-        {
+		if ($result->num_rows > 0)
+		{
+			$row = $result->fetch_assoc();
+            $policyvalue = $row["policyvalue"];
             $conn->close();
-            returnWithError($conn->error);
-        }
+            returnWithInfo($policyvalue);
+		}
+		else
+		{
+            $conn->close();
+            returnWithError( "No Records Found" );
+		}
 	}
 	function sendResultInfoAsJson( $obj )
 	{

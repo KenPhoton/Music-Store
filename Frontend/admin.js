@@ -334,7 +334,7 @@ function getDiscounts()
 					var jsonObject2 = JSON.parse( xhr2.responseText );
 					if (jsonObject2.error == '')
 					{
-						confirm(jsonObject2.policyvalue)
+						confirm(jsonObject2.policyvalue);
 						document.getElementById("discountPolicy").innerHTML = " " + jsonObject2.policyvalue + " ";
 					}
 					else
