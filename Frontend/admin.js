@@ -178,6 +178,7 @@ function addProduct() {
 		else
 		{
 			alert("Successful insertion!");
+			window.location.reload();
 		}
 	}
 	catch(err)
