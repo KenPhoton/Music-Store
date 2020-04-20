@@ -7,8 +7,6 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
-        <title>Contacts | Contact Manager</title>
     </head>
     <body onload="adminSearchProducts()">
         <header><h1> Store Management System </h1></header>
@@ -19,7 +17,7 @@
             <li class="button"><a href="index.html" class="button" onclick="logout()">Logout</a></li>
         </ul>
         <div class="container">  
-            <h2>Products List</h2>
+            <h2>Purchase History</h2>
         
             <form>
                 <div class="form-row align-items-center">
@@ -29,72 +27,7 @@
                     </div>
         
                 <div class="col-auto my-1">
-                    <button type="button" class="btn btn-primary btn" onclick="adminSearchProducts()">Submit</button>
-                </div>
-                <div class="col-auto my-1">
-                    <p id="LogError"></p>
-                </div>
-                <div class="col-auto my-1">
-                    <span id="productSearchResult1"></span>
-                </div>
-                <p id="productSearchResult"></p>
-                <div>
-                    <button type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#ProductModal">Add Product</button>
-                    <div class="modal" id="ProductModal">
-                        <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h4 class="modal-title">Add Product</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-                            
-                            <!-- Modal body -->
-                            <div class="modal-body">
-                            <input type="text" id="productname" placeholder="Product Name" required="required">
-                            <input type="text" id="fullprice" placeholder="Price" required="required"><br><br>
-                            <input type="text" id="description" placeholder="Description" required="required">
-                            <input type="text" id="category" placeholder="Category" required="required"><br><br>
-                            <input type="text" id="stocked" placeholder="Stocked" required="required">
-                            <input type="text" id="picname" placeholder="Picture Name" required="required"><br><br>
-                            </div>
-                            
-                            <!-- Modal footer -->
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-primary btn" onclick="addProduct()">New Product</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            </div>
-                            
-                        </div>
-                        </div>
-                    </div>
-                    <div class="modal" id="EditProductModal">
-                        <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h4 class="modal-title">Edit Product</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-                            
-                            <!-- Modal body -->
-                            <div class="modal-body">
-                                <input type="text" id="productname2" placeholder="Product Name" required="required">
-                                <input type="text" id="fullprice2" placeholder="Price" required="required"><br><br>
-                                <input type="text" id="description2" placeholder="Description" required="required">
-                                <input type="text" id="category2" placeholder="Category" required="required"><br><br>
-                                <input type="text" id="stocked2" placeholder="Stocked" required="required">
-                                <input type="text" id="picname2" placeholder="Picture Name" required="required"><br><br>
-                            </div>
-                            
-                            <!-- Modal footer -->
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-primary btn" onclick="editProduct()">Edit Product</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            </div>
-                            
-                        </div>
-                        </div>
-                    </div>
-                    </div>
+                    <button type="button" class="btn btn-primary btn" onclick="searchPurchaseHistory()">Submit</button>
                 </div>
             </form>
         
@@ -103,31 +36,29 @@
             <div class="col-auto my-1">
                 <table class="table table-striped" style="width: 100%">
                     <colgroup>
-                        <col span="1" style="width: 12%;">
-                        <col span="1" style="width: 10%;">
-                        <col span="1" style="width: 23%;">
-                        <col span="1" style="width: 10%;">
-                        <col span="1" style="width: 10%;">
+                        <col span="1" style="width: 7%;">
+                        <col span="1" style="width: 7%;">
+                        <col span="1" style="width: 7%;">
                         <col span="1" style="width: 15%;">
-                        <col span="1" style="width: 10;">
-                        <col span="1" style="width: 10%;">
+                        <col span="1" style="width: 23%;">
+                        <col span="1" style="width: 23%;">
+                        <col span="1" style="width: 18;">
                     </colgroup>
                     <thead class="thead-dark">
                         <tr>
-                        <th style="font-size: small" scope="col">Product</th>
-                        <th style="font-size: small" scope="col">Price</th>
-                        <th style="font-size: small" scope="col">Description</th>
-                        <th style="font-size: small" scope="col">Category</th>
-                        <th style="font-size: small" scope="col">Stocked</th>
-                        <th style="font-size: small" scope="col">Picture</th>
-                        <th style="font-size: small" scope="col">Edit</th>
-                        <th style="font-size: small" scope="col">Delete</th>
+                        <th style="font-size: small" scope="col">ID</th>
+                        <th style="font-size: small" scope="col">PID</th>
+                        <th style="font-size: small" scope="col">DID</th>
+                        <th style="font-size: small" scope="col">Name</th>
+                        <th style="font-size: small" scope="col">Email</th>
+                        <th style="font-size: small" scope="col">Street</th>
+                        <th style="font-size: small" scope="col">Credit#</th>
                         </tr>
                     </thead>
                 </table>
             </div>
             <div class="col-auto my-1">
-                <table id="productList" style="visibility:hidden" class="table table-striped">
+                <table id="purchaseList" style="visibility:hidden" class="table table-striped">
                 </table>
             </div>
         </div>

@@ -57,7 +57,7 @@ function adminSearchProducts()
                         newProductinfo.insertCell(0).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.productid+"&nbsp;</th>";
 						newProductinfo.insertCell(1).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.productname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
 						newProductinfo.insertCell(2).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.fullprice+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-                        newProductinfo.insertCell(3).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.description+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        newProductinfo.insertCell(3).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.description+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
 						newProductinfo.insertCell(4).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.category+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
 						newProductinfo.insertCell(5).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.stocked+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
                         newProductinfo.insertCell(6).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.picname+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
@@ -207,6 +207,67 @@ function deleteProduct(productname) {
 		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xmlhttp.send(jsonObj);
 	}
+}
+
+function searchPurchaseHistory() 
+{
+    var search = document.getElementById("inlineFormInputName").value;
+    
+    if (localStorage.hasOwnProperty("userid"))
+    {
+        var xhr= new XMLHttpRequest();
+        xhr.open("POST","./searchpurchasehistory.php",false);
+        xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
+        var jsonPayload = '{"search" : "' + search + '"}';
+        
+        try
+        {
+            xhr.onreadystatechange = function()
+            {
+                if (this.readyState == 4 && this.status == 200)
+                {
+                    hideOrShow( "purchaseList", true );
+                    var jsonObject = JSON.parse( xhr.responseText );
+                    var table = document.getElementById("purchaseList");
+					table.deleteTHead();
+                    
+                    for (var i = 0; i < jsonObject.results.length; i++)
+                    {
+                        //var opt = document.createElement("option");
+                        var jsonObjectTwo = jsonObject.results[i];
+                        var newPurchase = table.createTHead(localStorage.getItem("userid"));
+                        var newPurchaseinfo = newPurchase.insertRow(0);
+                        newPurchaseinfo.scope = "row";
+						newPurchaseinfo.value = "1";
+						var namestring = jsonObjectTwo.fname + " " + jsonObjectTwo.lname;
+                        newPurchaseinfo.insertCell(0).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.purchaseid+"&nbsp;</th>";
+						newPurchaseinfo.insertCell(1).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.productid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newPurchaseinfo.insertCell(2).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.discountid+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        newPurchaseinfo.insertCell(3).outerHTML = '<th style="font-size: small" scope="col">'+namestring+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newPurchaseinfo.insertCell(4).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.email+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+						newPurchaseinfo.insertCell(5).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.address+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        newPurchaseinfo.insertCell(6).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.creditnum+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+                        //var newRow = table.rows[0];
+                        //table.parent.insertBefore(newRow, table.rows[1]);
+                        //alert(ContactName);
+                        //opt.text = ContactName;
+                        //opt.value = "";
+                        //contactList.options.add(opt);
+                    }
+                }
+            };
+            xhr.send(jsonPayload);
+        }
+        catch(err)
+        {
+            document.getElementById("purchaseSearchResult").innerHTML = err.message;
+            alert("BIG ERROR BRO");
+        }
+    }
+    else 
+    {
+        window.location.assign("index.html");
+    }
 }
 
 // Deletes a table entry.

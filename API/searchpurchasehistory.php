@@ -14,10 +14,9 @@
 	} 
 	else
 	{
-        // product has productid/productname/fullprice/description/category/stocked/picname
-		// BUT only return id/name/price/picname, and only search thru name/descript/category
+        //purchaseid,productid,discountid,fname,lname,email,address,creditnum
 		$_POST = json_decode(file_get_contents('php://input'), true);
-		$sql = "SELECT productid,productname,fullprice,picname from Product where stocked=1 and productname like '%" . $_POST["search"] . "%' or category like '%" . $_POST["search"] . "%' or description like '%" . $_POST["search"] . "%'";
+		$sql = "SELECT * FROM Purchase where productid like '%" . $_POST["search"] . "%' or discountid like '%" . $_POST["search"] . "%' or fname like '%" . $_POST["search"] . "%' or lname like '%" . $_POST["search"] . "%' or email like '%" . $_POST["search"] . "%' or address like '%" . $_POST["search"] . "%' or creditnum like '%" . $_POST["search"] . "%'";
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{
@@ -28,7 +27,7 @@
 					$searchResults .= ",";
 				}
 				$searchCount++;
-				$searchResults .= '{"productid": "' . $row["productid"] . '","productname": "' . $row["productname"] . '","fullprice": "' . $row["fullprice"] . '","description": "' . $row["description"] . '","category": "' . $row["category"] . '","stocked": "' . $row["stocked"] . '","picname": "' . $row["picname"] . '"}';
+				$searchResults .= '{"purchaseid": "' . $row["purchaseid"] . '","productid": "' . $row["productid"] . '","discountid": "' . $row["discountid"] . '","fname": "' . $row["fname"] . '","lname": "' . $row["lname"] . '","email": "' . $row["email"] . '","address": "' . $row["address"] . '","creditnum": "' . $row["creditnum"] . '"}';
             }
             $conn->close();
             returnWithInfo( $searchResults );
@@ -48,7 +47,7 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"productid":"","productname":"","fullprice":"","description":"","category":"","stocked":"","picname":"","error":"' . $err . '"}';
+		$retValue = '{"purchaseid":"","productid":"","discountid":"","fname":"","lname":"","email":"","address":"","creditnum":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
