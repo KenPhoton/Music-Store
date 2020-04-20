@@ -48,14 +48,15 @@ function adminSearchProducts()
                     hideOrShow( "productList", true );
                     var jsonObject = JSON.parse( xhr.responseText );
                     var table = document.getElementById("productList");
-					table.deleteTHead();
+                    table.deleteTHead();
+                    var newProduct = table.createTHead(localStorage.getItem("userid"));
+                    newProduct.outerHTML='<thead class="thead-light"><colgroup><col style="width: 3%;" span="1"><col style="width: 17%;" span="1"><col style="width: 10%;" span="1"><col style="width: 30%;" span="1"><col style="width: 10%;" span="1"><col style="width: 10%;" span="1"><col style="width: 10%;" span="1"><col style="width: 10%;" span="1"></colgroup></>';
                     
                     for (var i = jsonObject.results.length - 1; i >= 0; i--)
                     {
                         //var opt = document.createElement("option");
                         var jsonObjectTwo = jsonObject.results[i];
                         var productname = jsonObjectTwo.productname;
-                        var newProduct = table.createTHead(localStorage.getItem("userid"));
                         var newProductinfo = newProduct.insertRow(0);
                         newProductinfo.scope = "row";
 						newProductinfo.value = "1";
@@ -68,12 +69,7 @@ function adminSearchProducts()
                         var productid = jsonObjectTwo.productid;
                         newProductinfo.insertCell(6).outerHTML = '<th style="font-size: x-small" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setUpdateId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#EditProductModal">Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>';
                         newProductinfo.insertCell(7).outerHTML = '<th style="font-size: x-small" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" class="btn btn-primary btn" onclick="deleteThis(this, this.value)">Delete</button></th>';
-                        //var newRow = table.rows[0];
-                        //table.parent.insertBefore(newRow, table.rows[1]);
-                        //alert(ContactName);
-                        //opt.text = ContactName;
-                        //opt.value = "";
-                        //contactList.options.add(opt);
+                        thead.outerHTML
                     }
                 }
             };
