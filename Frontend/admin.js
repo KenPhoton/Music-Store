@@ -320,22 +320,22 @@ function getDiscounts()
 {
     if (localStorage.hasOwnProperty("userid"))
     {
-		var xhr= new XMLHttpRequest();
-        xhr.open("POST","./getpolicy.php",false);
-        xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
+		var xhr2= new XMLHttpRequest();
+        xhr2.open("POST","./getpolicy.php",false);
+        xhr2.setRequestHeader("Content-type","application/json; charset=UTF-8");
         var jsonPayload = '{}';
         
         try
         {
-            xhr.onreadystatechange = function()
+            xhr2.onreadystatechange = function()
             {
                 if (this.readyState == 4 && this.status == 200)
                 {
-					var jsonObject = JSON.parse( xhr.responseText );
+					var jsonObject = JSON.parse( xhr2.responseText );
 					document.getElementById("discountPolicy").innerHTML = jsonObject.policyvalue;
                 }
             };
-            xhr.send(jsonPayload);
+            xhr2.send(jsonPayload);
         }
         catch(err)
         {
