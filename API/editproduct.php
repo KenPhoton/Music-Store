@@ -44,8 +44,7 @@
                     }
                     else
                     {
-                        $conn->close();
-                        returnWithError( "Error updating product" );
+                        returnWithError( $conn->error() );
                     }
                 }
                 else {
