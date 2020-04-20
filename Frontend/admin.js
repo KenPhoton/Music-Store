@@ -6,6 +6,11 @@ function logout() {
 	location.href = 'http://52.2.112.101/';
 }
 
+function verifyLogin() {
+    if (!localStorage.hasOwnProperty("userid"))
+        window.location.assign("index.html");
+}
+
 function hideOrShow (elementId, showState) {
     var vis = "visible";
     var dis = "block";
