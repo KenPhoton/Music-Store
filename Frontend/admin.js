@@ -236,14 +236,15 @@ function searchPurchaseHistory()
                     hideOrShow( "purchaseList", true );
                     var jsonObject = JSON.parse( xhr.responseText );
                     var table = document.getElementById("purchaseList");
-					table.deleteTHead();
+                    table.deleteTHead();
+                    table.innerHTML = '<colgroup><col span="1" style="width: 7.5%;"><col span="1" style="width: 7.5%;"><col span="1" style="width: 20%;"><col span="1" style="width: 20%;"><col span="1" style="width: 15%;"><col span="1" style="width: 15%;"><col span="1" style="width: 15;"></colgroup>';
                     
                     for (var i = jsonObject.results.length - 1; i >= 0; i--)
                     {
                         //var opt = document.createElement("option");
                         var jsonObjectTwo = jsonObject.results[i];
                         var newPurchase = table.createTHead();
-                        newPurchase.class="thead-light";
+                        newPurchase.outerHTML = '<thead class="thead-light"></thead>';
                         var newPurchaseinfo = newPurchase.insertRow(0);
                         newPurchaseinfo.scope = "row";
 						newPurchaseinfo.value = "1";
