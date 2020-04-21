@@ -245,7 +245,7 @@ function searchPurchaseHistory()
                         var newPurchaseinfo = table.getElementsByTagName('thead')[0].insertRow(0);
                         newPurchaseinfo.scope = "row";
                         newPurchaseinfo.value = "1";
-                        var idstring = jsonObjectTwo.purchaseid + "&nbsp&nbsp&nbsp&nbsp&nbsp" + jsonObjectTwo.productid + "&nbsp&nbsp&nbsp&nbsp&nbsp" + jsonObjectTwo.discountid;
+                        var idstring = jsonObjectTwo.purchaseid + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" + jsonObjectTwo.productid + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" + jsonObjectTwo.discountid;
 						var namestring = jsonObjectTwo.fname + " " + jsonObjectTwo.lname;
                         newPurchaseinfo.insertCell(0).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+idstring+"</th>";
                         newPurchaseinfo.insertCell(1).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+namestring+"</th>";
@@ -363,7 +363,7 @@ function getDiscounts()
                     var table = document.getElementById("discountList");
 					table.deleteTHead();
                     var newDiscount = table.createTHead();
-                    newDiscount.outerHTML='<thead class="thead-light"><colgroup><col span="1" style="width: 10%;"><col span="1" style="width: 10%;"><col span="1" style="width: 20%;"><col span="1" style="width: 20%;"><col span="1" style="width: 10%;"><col span="1" style="width: 10%;"><col span="1" style="width: 20%;"></colgroup></thead>';
+                    newDiscount.outerHTML='<thead class="thead-light"><colgroup><col span="1" style="width: 20%;"><col span="1" style="width: 20%;"><col span="1" style="width: 20%;"><col span="1" style="width: 10%;"><col span="1" style="width: 10%;"><col span="1" style="width: 20%;"></colgroup></thead>';
                     
                     for (var i = jsonObject.results.length - 1; i >= 0; i--)
                     {
@@ -371,14 +371,14 @@ function getDiscounts()
                         var jsonObjectTwo = jsonObject.results[i];
                         var newDiscountinfo = table.getElementsByTagName('thead')[0].insertRow(0);
                         newDiscountinfo.scope = "row";
-						newDiscountinfo.value = "1";
-                        newDiscountinfo.insertCell(0).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.discountid+"</th>";
-						newDiscountinfo.insertCell(1).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.productid+"</th>";
-						newDiscountinfo.insertCell(2).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.discountcode+"</th>";
-                        newDiscountinfo.insertCell(3).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.issuedate+"</th>";
-						newDiscountinfo.insertCell(4).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.count+"</th>";
-						newDiscountinfo.insertCell(5).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.active+"</th>";
-                        newDiscountinfo.insertCell(6).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.finaldiscount+"</th>";
+                        newDiscountinfo.value = "1";
+                        var idstring = jsonObjectTwo.discountid + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" + jsonObjectTwo.productid;
+                        newDiscountinfo.insertCell(0).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+idstring+"</th>";
+						newDiscountinfo.insertCell(1).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.discountcode+"</th>";
+                        newDiscountinfo.insertCell(2).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.issuedate+"</th>";
+						newDiscountinfo.insertCell(3).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.count+"</th>";
+						newDiscountinfo.insertCell(4).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.active+"</th>";
+                        newDiscountinfo.insertCell(5).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.finaldiscount+"</th>";
                         //var newRow = table.rows[0];
                         //table.parent.insertBefore(newRow, table.rows[1]);
                         //alert(ContactName);
