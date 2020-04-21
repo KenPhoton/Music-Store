@@ -13,6 +13,9 @@
     $email = $_POST["email"];
     $address = $_POST["address"];
     $creditnum = $_POST["creditnum"];
+
+    if (strlen($creditnum > 20))
+        returnWithError("Credit number exceeds maximum");
     
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
