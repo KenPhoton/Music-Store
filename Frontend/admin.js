@@ -49,7 +49,7 @@ function adminSearchProducts()
                     var jsonObject = JSON.parse( xhr.responseText );
                     var table = document.getElementById("productList");
                     table.deleteTHead();
-                    var newProduct = table.createTHead(localStorage.getItem("userid"));
+                    var newProduct = table.createTHead();
                     newProduct.outerHTML='<thead class="thead-light"><colgroup><col style="width: 3%;" span="1"><col style="width: 17%;" span="1"><col style="width: 10%;" span="1"><col style="width: 30%;" span="1"><col style="width: 10%;" span="1"><col style="width: 10%;" span="1"><col style="width: 10%;" span="1"><col style="width: 10%;" span="1"></colgroup></>';
                     
                     for (var i = jsonObject.results.length - 1; i >= 0; i--)
@@ -57,7 +57,7 @@ function adminSearchProducts()
                         //var opt = document.createElement("option");
                         var jsonObjectTwo = jsonObject.results[i];
                         var productname = jsonObjectTwo.productname;
-                        var newProductinfo = newProduct.insertRow(0);
+                        var newProductinfo = newProduct.insertRow();
                         newProductinfo.scope = "row";
 						newProductinfo.value = "1";
                         newProductinfo.insertCell(0).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.productid+"&nbsp;</th>";
