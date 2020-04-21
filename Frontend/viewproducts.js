@@ -6,6 +6,7 @@ function setPurchaseId(val)
 function searchProducts() 
 {
     var search = document.getElementById("inlineFormInputName").value;
+    document.getElementById("inlineFormInputName").value = "";
     var xhr= new XMLHttpRequest();
     xhr.open("POST","./searchproducts.php",false);
     xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
