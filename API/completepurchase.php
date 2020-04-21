@@ -25,7 +25,7 @@
         $sql = "INSERT INTO Purchase (productid, discountid, fname, lname, email, address, creditnum) VALUES (" . $productid . ", " . $discountid . ", '" . $fname . "', '" . $lname . "', '" . $email . "', '" . $address . "', '" . $creditnum . "')";
         if ($conn->query($sql) === TRUE) {
             $purchaseid = $conn->insert_id;
-            $sql = "UPDATE Discount SET count=count+1 WHERE discountid='" . $discountid . "' ";
+            $sql = "UPDATE Discount SET count=count+1 WHERE discountid=" . $discountid . "";
             if ($conn->query($sql) === TRUE) {
                 $conn->close();
                 returnWithInfo($purchaseid);
