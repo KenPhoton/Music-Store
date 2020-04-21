@@ -17,7 +17,7 @@
         // product has productid/productname/fullprice/description/category/stocked
 		// BUT only return id/name/price, and only search thru name/descript/category
 		$_POST = json_decode(file_get_contents('php://input'), true);
-		$sql = "SELECT * from Product where stocked=1 and productname like '%" . $_POST["search"] . "%' or category like '%" . $_POST["search"] . "%' or description like '%" . $_POST["search"] . "%' or picname like '%" . $_POST["search"] . "%'";
+		$sql = "SELECT * from Product where stocked=1 and (productname like '%" . $_POST["search"] . "%' or category like '%" . $_POST["search"] . "%' or description like '%" . $_POST["search"] . "%' or picname like '%" . $_POST["search"] . "%')";
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{

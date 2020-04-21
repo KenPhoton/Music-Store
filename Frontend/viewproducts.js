@@ -24,7 +24,7 @@ function searchProducts()
                 for (var i = jsonObject.results.length - 1; i >= 0; i--)
                 {
                     var jsonObjectTwo = jsonObject.results[i];
-                    section.innerHTML += '<div class="product-card"><div class="product-image"><img src="'+jsonObjectTwo.picname+'" height = "250" width = "250" /></div><div class="product-info"><h5>'+jsonObjectTwo.productname+'</h5><h6>$'+jsonObjectTwo.fullprice+'</h6><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setPurchaseId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#PurchaseProductModal">Checkout</button></div></div>';
+                    section.innerHTML += '<div class="product-card"><div class="product-image"><img src="'+jsonObjectTwo.picname+'" height = "250" width = "250" /></div><div class="product-info"><h5>'+jsonObjectTwo.productname+'</h5><h6>$'+jsonObjectTwo.fullprice+'</h6><h6>$'+jsonObjectTwo.description+'</h6><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setPurchaseId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#PurchaseProductModal">Checkout</button></div></div>';
                     
                     if ((jsonObject.results.length - i)%3 == 0)
                         section.innerHTML += "<br></br>";
