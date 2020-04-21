@@ -17,7 +17,10 @@
         //purchaseid,productid,discountid,fname,lname,email,address,creditnum
         $_POST = json_decode(file_get_contents('php://input'), true);
         $val = $_POST["search"];
-		$sql = "SELECT * FROM Purchase where discountid=" . $val . "";
+        if ($val !== '')
+            $sql = "SELECT * FROM Purchase where discountid=" . $val . "";
+        else
+            $sql = "SELECT * FROM Purchase";
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{
