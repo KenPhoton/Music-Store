@@ -34,8 +34,9 @@
                 returnWithError( "Failed to update discount code use count" );
             }
         } else {
+            $err = $conn->error();
             $conn->close();
-            returnWithError( "Failed to finalize purchase" );
+            returnWithError( "Failed to finalize purchase: " . $err . "");
         }     
 	}
 	function sendResultInfoAsJson( $obj )
