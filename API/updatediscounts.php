@@ -27,7 +27,7 @@
 	else
 	{
         $date = date('Y-m-d', time());
-        $sql = "SELECT a.discountid, a.count, b.policyvalue FROM Discount a, Policy b WHERE active=1 and issuedate between '2020-01-01' and DATE_SUB('" . $date . "', INTERVAL 8 DAY)";
+        $sql = "SELECT a.discountid, a.count, b.policyvalue FROM Discount a, Policy b WHERE active=1 and issuedate between '2020-01-01' and DATE_SUB('" . $date . "', INTERVAL 7 DAY)";
         $result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{
