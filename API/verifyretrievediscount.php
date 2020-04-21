@@ -78,7 +78,7 @@
 	}
 	function returnWithInfo( $discountid, $discountcode, $issuedate, $count)
 	{
-		$retValue = '{"discountid":"' . $discountid . '","discountcode":"' . $discountcode . '","issuedate":"' . $issuedate . '","count":"' . $count . '","error":""}';
+		$retValue = '{"discountid":' . $discountid . ',"discountcode":"' . $discountcode . '","issuedate":"' . $issuedate . '","count":' . $count . ',"error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 ?>
