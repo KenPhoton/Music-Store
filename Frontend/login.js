@@ -31,7 +31,7 @@ var fileExtension = ".php";
 
 function verifyLogin() {
 	if (localStorage.hasOwnProperty("userid"))
-        window.location.assign("admin.html");
+        window.location.assign("productmanager.html");
 }
 
 function login()
@@ -55,7 +55,7 @@ function login()
 			return;
 		}
 		localStorage.setItem("userid",userId);
-		location.href = 'http://52.2.112.101/admin.html';
+		location.href = 'http://52.2.112.101/productmanager.html';
 	}
 	catch(err)
 	{
