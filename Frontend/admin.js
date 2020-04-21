@@ -52,12 +52,13 @@ function adminSearchProducts()
                     var newProduct = table.createTHead();
                     newProduct.outerHTML='<thead class="thead-light"><colgroup><col style="width: 3%;" span="1"><col style="width: 17%;" span="1"><col style="width: 10%;" span="1"><col style="width: 30%;" span="1"><col style="width: 10%;" span="1"><col style="width: 10%;" span="1"><col style="width: 10%;" span="1"><col style="width: 10%;" span="1"></colgroup></>';
                     
+                    var j = 0;
                     for (var i = jsonObject.results.length - 1; i >= 0; i--)
                     {
                         //var opt = document.createElement("option");
                         var jsonObjectTwo = jsonObject.results[i];
                         var productname = jsonObjectTwo.productname;
-                        var newProductinfo = table.getElementsByTagName('thead').insertRow();
+                        var newProductinfo = table.getElementsByTagName('thead')[j].insertRow();
                         newProductinfo.scope = "row";
 						newProductinfo.value = "1";
                         newProductinfo.insertCell(0).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.productid+"</th>";
@@ -69,7 +70,7 @@ function adminSearchProducts()
                         var productid = jsonObjectTwo.productid;
                         newProductinfo.insertCell(6).outerHTML = '<th style="font-size: x-small" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setUpdateId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#EditProductModal">Edit</button></th>';
                         newProductinfo.insertCell(7).outerHTML = '<th style="font-size: x-small" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" class="btn btn-primary btn" onclick="deleteThis(this, this.value)">Delete</button></th>';
-                        thead.outerHTML
+                        j++;
                     }
                 }
             };
