@@ -51,7 +51,7 @@
 	}
 	function returnWithInfo( $purchaseid )
 	{
-		$retValue = '{"purchaseid":"' . $purchaseid . '","error":""}';
+		$retValue = '{"purchaseid":' . $purchaseid . ',"error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 ?>

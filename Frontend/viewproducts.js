@@ -77,7 +77,7 @@ function purchaseProduct()
                 else
                     alerttext += "Generated a new discount code: " + jsonObject2.discountcode + ". ";
 
-                var jsonPayload2 = '{"productid":"'+productid+'","discountid":"'+jsonObject2.discountid+'","fname":"'+fname+'","lname":"'+lname+'","email":"'+email+'","address":"'+address+'","creditnum":"'+creditnum+'"}'; 
+                var jsonPayload2 = '{"productid":'+productid+',"discountid":'+jsonObject2.discountid+',"fname":"'+fname+'","lname":"'+lname+'","email":"'+email+'","address":"'+address+'","creditnum":"'+creditnum+'"}'; 
 
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", './completepurchase.php', false);
@@ -110,7 +110,7 @@ function purchaseProduct()
 		}
 		catch(err)
 		{
-			alert(err.message + " " + xhr2.responseText + " " + xhr.responseText);
+			alert(err.message + " HEY " + xhr2.responseText + " HEY " + xhr.responseText);
 		}
 	}
 }
