@@ -28,6 +28,7 @@ function setUpdateId(val)
 function adminSearchProducts() 
 {
     var search = document.getElementById("inlineFormInputName").value;
+    document.getElementById("inlineFormInputName").value = "";
     
     if (localStorage.hasOwnProperty("userid"))
     {
@@ -93,13 +94,6 @@ function editProduct() {
 	var category = document.getElementById("category2").value;
     var stocked = document.getElementById("stocked2").value;
     var picname = document.getElementById("picname2").value;
-		
-	document.getElementById("productname2").value = "";
-	document.getElementById("fullprice2").value = "";
-	document.getElementById("description2").value = "";
-	document.getElementById("category2").value = "";
-    document.getElementById("stocked2").value = "";
-    document.getElementById("picname2").value = "";
 		
 	if(productname == "" || fullprice == "" || description == "" || category == "" || stocked == "")
 	{
@@ -233,6 +227,7 @@ function deleteProduct(productname) {
 function searchPurchaseHistory() 
 {
     var search = document.getElementById("inlineFormInputName").value;
+    document.getElementById("inlineFormInputName").value = "";
     
     if (localStorage.hasOwnProperty("userid"))
     {
@@ -294,6 +289,7 @@ function searchPurchaseHistory()
 function searchPurchaseHistoryByDID() 
 {
     var search = document.getElementById("inlineFormInputName2").value;
+    document.getElementById("inlineFormInputName2").value = "";
     
     if (localStorage.hasOwnProperty("userid"))
     {
@@ -355,7 +351,8 @@ function searchPurchaseHistoryByDID()
 function editPolicy() {
 	if (localStorage.hasOwnProperty("userid"))
     {
-		var policyvalue = document.getElementById("inlineFormInputName").value;
+        var policyvalue = document.getElementById("inlineFormInputName").value;
+        document.getElementById("inlineFormInputName").value = "";
 		var xhr= new XMLHttpRequest();
         xhr.open("POST","./editpolicy.php",false);
         xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
