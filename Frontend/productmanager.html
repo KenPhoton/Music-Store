@@ -26,70 +26,70 @@
                         <input type="text" class="form-control" id="inlineFormInputName" placeholder="Search">
                     </div>
         
-                <div class="col-auto my-1">
-                    <button type="button" class="btn btn-primary btn" onclick="adminSearchProducts()">Submit</button>
-                </div>
-                <div class="col-auto my-1">
-                    <p id="LogError"></p>
-                </div>
-                <div class="col-auto my-1">
-                    <span id="productSearchResult1"></span>
-                </div>
-                <p id="productSearchResult"></p>
-                <div>
-                    <button type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#ProductModal">Add Product</button>
-                    <div class="modal" id="ProductModal">
-                        <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h4 class="modal-title">Add Product</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-                            
-                            <!-- Modal body -->
-                            <div class="modal-body">
-                            <input type="text" id="productname" placeholder="Product Name" required="required">
-                            <input type="text" id="fullprice" placeholder="Price" required="required"><br><br>
-                            <input type="text" id="description" placeholder="Description" required="required">
-                            <input type="text" id="category" placeholder="Category" required="required"><br><br>
-                            <input type="text" id="stocked" placeholder="Stocked" required="required">
-                            </div>
-                            
-                            <!-- Modal footer -->
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-primary btn" onclick="addProduct()">New Product</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            </div>
-                            
-                        </div>
-                        </div>
+                    <div class="col-auto my-1">
+                        <button type="button" class="btn btn-primary btn" onclick="adminSearchProducts()">Submit</button>
                     </div>
-                    <div class="modal" id="EditProductModal">
-                        <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h4 class="modal-title">Edit Product</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-                            
-                            <!-- Modal body -->
-                            <div class="modal-body">
-                                <input type="text" id="productname2" placeholder="Product Name" required="required">
-                                <input type="text" id="fullprice2" placeholder="Price" required="required"><br><br>
-                                <input type="text" id="description2" placeholder="Description" required="required">
-                                <input type="text" id="category2" placeholder="Category" required="required"><br><br>
-                                <input type="text" id="stocked2" placeholder="Stocked" required="required">
-                            </div>
-                            
-                            <!-- Modal footer -->
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-primary btn" onclick="editProduct()">Edit Product</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            </div>
-                            
-                        </div>
-                        </div>
+                    <div class="col-auto my-1">
+                        <p id="LogError"></p>
                     </div>
+                    <div class="col-auto my-1">
+                        <span id="productSearchResult1"></span>
+                    </div>
+                    <p id="productSearchResult"></p>
+                    <div>
+                        <button type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#ProductModal">Add Product</button>
+                        <div class="modal" id="ProductModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h4 class="modal-title">Add Product</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                    <input type="text" id="productname" placeholder="Product Name" required="required">
+                                    <input type="text" id="fullprice" placeholder="Price" required="required"><br><br>
+                                    <input type="text" id="description" placeholder="Description" required="required">
+                                    <input type="text" id="category" placeholder="Category" required="required"><br><br>
+                                    <input type="text" id="stocked" placeholder="Stocked" required="required">
+                                    </div>
+                                    
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary btn" onclick="addProduct()">New Product</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal" id="EditProductModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Edit Product</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        <input type="text" id="productname2" placeholder="Product Name" required="required">
+                                        <input type="text" id="fullprice2" placeholder="Price" required="required"><br><br>
+                                        <input type="text" id="description2" placeholder="Description" required="required" style="width:100%"><br><br>
+                                        <input type="text" id="category2" placeholder="Category" required="required">
+                                        <input type="text" id="stocked2" placeholder="Stocked" required="required">
+                                    </div>
+                                    
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary btn" onclick="editProduct()">Edit Product</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>

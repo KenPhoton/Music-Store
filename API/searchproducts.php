@@ -17,7 +17,7 @@
         // product has productid/productname/fullprice/description/category/stocked
 		// BUT only return id/name/price, and only search thru name/descript/category
 		$_POST = json_decode(file_get_contents('php://input'), true);
-		$sql = "SELECT productid,productname,fullprice from Product where stocked=1 and productname like '%" . $_POST["search"] . "%' or category like '%" . $_POST["search"] . "%' or description like '%" . $_POST["search"] . "%'";
+		$sql = "SELECT * from Product where stocked=1 and productname like '%" . $_POST["search"] . "%' or category like '%" . $_POST["search"] . "%' or description like '%" . $_POST["search"] . "%' or picname like '%" . $_POST["search"] . "%'";
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{
@@ -28,7 +28,7 @@
 					$searchResults .= ",";
 				}
 				$searchCount++;
-				$searchResults .= '{"productid": "' . $row["productid"] . '","productname": "' . $row["productname"] . '","fullprice": "' . $row["fullprice"] . '","description": "' . $row["description"] . '","category": "' . $row["category"] . '","stocked": "' . $row["stocked"] . '"}';
+				$searchResults .= '{"productid": "' . $row["productid"] . '","productname": "' . $row["productname"] . '","fullprice": "' . $row["fullprice"] . '","description": "' . $row["description"] . '","category": "' . $row["category"] . '","picname": "' . $row["picname"] . '"}';
             }
             $conn->close();
             returnWithInfo( $searchResults );
@@ -48,7 +48,7 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"productid":"","productname":"","fullprice":"","description":"","category":"","stocked":"","error":"' . $err . '"}';
+		$retValue = '{"productid":"","productname":"","fullprice":"","description":"","category":"","picname":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	

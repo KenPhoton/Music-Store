@@ -1,6 +1,3 @@
-var APIRoot = "http://52.2.112.101";
-var fileExtension = ".php";
-
 function logout() {
 	localStorage.removeItem("userid");
 	location.href = 'http://52.2.112.101/';
@@ -160,7 +157,7 @@ function addProduct() {
 	var stocked = document.getElementById("stocked").value;
 
 	var jsonPayload = '{"productname" : "' + productname + '", "fullprice" : "' + fullprice + '", "description" : "' + description + '", "category" : "' + category + '", "stocked" : "' + stocked + '"}';
-	var url = APIRoot + '/insertproduct' + fileExtension;
+	var url = './insertproduct.php';
 	
 	if(productname == "" || fullprice == "" || description == "" || category == "" || stocked == "")
 	{
@@ -208,7 +205,7 @@ function deleteProduct(productname) {
 			else
 				alert("delete error: " + response.error);
 		}
-		xmlhttp.open("POST", "deleteproduct.php", true);
+		xmlhttp.open("POST", "./deleteproduct.php", false);
 		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xmlhttp.send(jsonObj);
 	}

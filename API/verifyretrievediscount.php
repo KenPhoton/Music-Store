@@ -34,9 +34,10 @@
 			$row = $result->fetch_assoc();
             $discountid = $row["discountid"];
             $discountcode = $row["discountcode"];
+            $count = $row["count"];
             $issuedate = $row["issuedate"];
             $conn->close();
-            returnWithInfo($discountid, $discountcode, $issuedate);
+            returnWithInfo($discountid, $discountcode, $issuedate, $count);
 		}
 		else
 		{
@@ -58,7 +59,7 @@
             if ($conn->query($sql) === TRUE) {
                 $discountid = $conn->discountid;
                 $conn->close();
-			    returnWithInfo($discountid, $discountcode, $issuedate);
+			    returnWithInfo($discountid, $discountcode, $issuedate, $count);
             } else {
                 $conn->close();
 			    returnWithError( "Failed to create discount code" );
@@ -72,12 +73,12 @@
 	}
 	function returnWithError( $err )
 	{
-		$retValue = '{"discountid":"","discountcode":"","issuedate":"","error":"' . $err . '"}';
+		$retValue = '{"discountid":"","discountcode":"","issuedate":"","count":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	function returnWithInfo( $discountid, $discountcode, $issuedate)
 	{
-		$retValue = '{"discountid":"' . $discountid . '","discountcode":"' . $discountcode . '","issuedate":"' . $issuedate . '","error":""}';
+		$retValue = '{"discountid":"' . $discountid . '","discountcode":"' . $discountcode . '","issuedate":"' . $issuedate . '","count":"' . $count . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 ?>

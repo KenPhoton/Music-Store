@@ -29,6 +29,11 @@
 var APIRoot = "http://52.2.112.101";
 var fileExtension = ".php";
 
+function verifyLogin() {
+	if (localStorage.hasOwnProperty("userid"))
+        window.location.assign("admin.html");
+}
+
 function login()
 {
 	var login = document.getElementById("user").value;
