@@ -363,7 +363,7 @@ function getDiscounts()
                     var table = document.getElementById("discountList");
 					table.deleteTHead();
                     var newDiscount = table.createTHead();
-                    newDiscount.outerHTML='<thead class="thead-light"><colgroup><col span="1" style="width: 20%;"><col span="1" style="width: 20%;"><col span="1" style="width: 20%;"><col span="1" style="width: 10%;"><col span="1" style="width: 10%;"><col span="1" style="width: 20%;"></colgroup></thead>';
+                    newDiscount.outerHTML='<thead class="thead-light"><colgroup><col span="1" style="width: 5%;"><col span="1" style="width: 20%;"><col span="1" style="width: 20%;"><col span="1" style="width: 12.5%;"><col span="1" style="width: 12.5%;"><col span="1" style="width: 20%;"></colgroup></thead>';
                     
                     for (var i = jsonObject.results.length - 1; i >= 0; i--)
                     {
