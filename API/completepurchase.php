@@ -22,7 +22,7 @@
 	}
 	else
 	{
-        if (strlen($creditnum > 20))
+        if (strlen($creditnum) > 20)
             returnWithError("Credit number exceeds maximum");
         else
         {
