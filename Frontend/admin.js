@@ -450,13 +450,14 @@ function editThis(el){
     // Replace 'edit' button with a 'save' button
     var row = el.parentNode.parentNode;
     row.getElementByClassName
-	var editButton = row.childNodes[13].childNodes[0];
+	var editButton = row.childNodes[15].childNodes[0];
 	var productid = row.childNode[1];
     var productname = row.childNodes[3];
     var fullprice = row.childNodes[5];
     var description = row.childNodes[7];
 	var category = row.childNodes[9];
-	var stocked = row.childNodes[11];
+    var stocked = row.childNodes[11];
+    var picname = row.childNodes[13];
 
     if (editButton.innerHTML == "Edit") {
 		editButton.innerHTML = "Save";
