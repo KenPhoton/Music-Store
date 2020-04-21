@@ -20,6 +20,7 @@
 		$description = $_POST["description"];
 		$category = $_POST["category"];
 		$stocked = $_POST["stocked"];
+		$picname = $_POST["picname"];
 
 		if ($stocked != 0 && $stocked != 1)
             returnWithError("Stocked must be 0 or 1.");
