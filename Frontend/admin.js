@@ -47,8 +47,8 @@ function adminSearchProducts()
                     var table = document.getElementById("productList");
                     table.deleteTHead();
                     var newProduct = table.createTHead();
-                    newProduct.outerHTML='<thead class="thead-light"><colgroup><col style="width: 3%;" span="1"><col style="width: 17%;" span="1"><col style="width: 10%;" span="1"><col style="width: 30%;" span="1"><col style="width: 10%;" span="1"><col style="width: 10%;" span="1"><col style="width: 10%;" span="1"><col style="width: 10%;" span="1"></colgroup></>';
-                    
+                    newProduct.outerHTML='<thead class="thead-light"><colgroup><col span="1" style="width: 3%;"><col span="1" style="width: 17%;"><col span="1" style="width: 10%;"><col span="1" style="width: 25%;"><col span="1" style="width: 10%;"><col span="1" style="width: 5%;"><col span="1" style="width: 10%;"><col span="1" style="width: 10;"><col span="1" style="width: 10%;"></colgroup></>';
+
                     // var j = 0;
                     for (var i = jsonObject.results.length - 1; i >= 0; i--)
                     {
@@ -63,10 +63,11 @@ function adminSearchProducts()
 						newProductinfo.insertCell(2).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.fullprice+"</th>";
                         newProductinfo.insertCell(3).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.description+"</th>";
 						newProductinfo.insertCell(4).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.category+"</th>";
-						newProductinfo.insertCell(5).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.stocked+"</th>";
+                        newProductinfo.insertCell(5).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.stocked+"</th>";
+                        newProductinfo.insertCell(6).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.picname+"</th>";
                         var productid = jsonObjectTwo.productid;
-                        newProductinfo.insertCell(6).outerHTML = '<th style="font-size: x-small; text-align: center" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setUpdateId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#EditProductModal">Edit</button></th>';
-                        newProductinfo.insertCell(7).outerHTML = '<th style="font-size: x-small; text-align: center" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" class="btn btn-primary btn" onclick="deleteThis(this, this.value)">Delete</button></th>';
+                        newProductinfo.insertCell(7).outerHTML = '<th style="font-size: x-small; text-align: center" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" onclick="setUpdateId(this.value)" class="btn btn-primary btn" data-toggle="modal" data-target="#EditProductModal">Edit</button></th>';
+                        newProductinfo.insertCell(8).outerHTML = '<th style="font-size: x-small; text-align: center" scope="col"><button type="button" value="'+jsonObjectTwo.productid+'" class="btn btn-primary btn" onclick="deleteThis(this, this.value)">Delete</button></th>';
                         // j++;
                     }
                 }
@@ -90,13 +91,15 @@ function editProduct() {
 	var fullprice = document.getElementById("fullprice2").value;
 	var description = document.getElementById("description2").value;
 	var category = document.getElementById("category2").value;
-	var stocked = document.getElementById("stocked2").value;
+    var stocked = document.getElementById("stocked2").value;
+    var picname = document.getElementById("picname2").value;
 		
 	document.getElementById("productname2").value = "";
 	document.getElementById("fullprice2").value = "";
 	document.getElementById("description2").value = "";
 	document.getElementById("category2").value = "";
-	document.getElementById("stocked2").value = "";
+    document.getElementById("stocked2").value = "";
+    document.getElementById("picname2").value = "";
 		
 	if(productname == "" || fullprice == "" || description == "" || category == "" || stocked == "")
 	{
@@ -110,7 +113,7 @@ function editProduct() {
 		var id = localStorage.getItem("userid");
 		var productid = localStorage.getItem("updateid");
 
-		var jsonPayload = '{"productid" : "' + productid + '", "productname" : "' + productname + '", "fullprice" : "' + fullprice + '", "description" : "' + description + '", "category" : "' + category + '", "stocked" : "' + stocked + '"}';
+		var jsonPayload = '{"productid" : "' + productid + '", "productname" : "' + productname + '", "fullprice" : "' + fullprice + '", "description" : "' + description + '", "category" : "' + category + '", "stocked" : "' + stocked + '", "picname" : "' + picname + '"}';
 		
 		try
 		{
@@ -118,10 +121,19 @@ function editProduct() {
 			var jsonObject = JSON.parse( xhr.responseText );
 			var error = jsonObject.error;
 			if (error != "")
-				{
-					confirm("Error editing product: " + error);
-				}
-			window.location.reload();
+            {
+                confirm("Error editing product: " + error);
+            }
+            else 
+            {
+                document.getElementById("productname2").value = "";
+                document.getElementById("fullprice2").value = "";
+                document.getElementById("description2").value = "";
+                document.getElementById("category2").value = "";
+                document.getElementById("stocked2").value = "";
+                document.getElementById("picname2").value = "";
+                window.location.reload();
+            }
 		}
 		catch(err)
 		{
@@ -154,9 +166,10 @@ function addProduct() {
 	var fullprice = document.getElementById("fullprice").value;
 	var description = document.getElementById("description").value;
 	var category = document.getElementById("category").value;
-	var stocked = document.getElementById("stocked").value;
+    var stocked = document.getElementById("stocked").value;
+    var picname = document.getElementById("picname").value;
 
-	var jsonPayload = '{"productname" : "' + productname + '", "fullprice" : "' + fullprice + '", "description" : "' + description + '", "category" : "' + category + '", "stocked" : "' + stocked + '"}';
+	var jsonPayload = '{"productname" : "' + productname + '", "fullprice" : "' + fullprice + '", "description" : "' + description + '", "category" : "' + category + '", "stocked" : "' + stocked + '", "picname" : "' + picname + '"}';
 	var url = './insertproduct.php';
 	
 	if(productname == "" || fullprice == "" || description == "" || category == "" || stocked == "")
@@ -179,7 +192,13 @@ function addProduct() {
 			}
 			else
 			{
-				alert("Successful insertion!");
+                alert("Successful insertion!");
+                document.getElementById("productname").value = "";
+                document.getElementById("fullprice").value = "";
+                document.getElementById("description").value = "";
+                document.getElementById("category").value = "";
+                document.getElementById("stocked").value = "";
+                document.getElementById("picname").value = "";
 				window.location.reload();
 			}
 		}

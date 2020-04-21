@@ -25,7 +25,7 @@
             returnWithError("Price must be numeric.");
         }
         else {
-            $sql = "UPDATE Product SET productname='" . $productname . "', fullprice='" . $fullprice . "', description='" . $description . "', category='" . $category . "', stocked='" . $stocked . "' WHERE productid='" . $productid . "'";
+            $sql = "UPDATE Product SET productname='" . $productname . "', fullprice='" . $fullprice . "', description='" . $description . "', category='" . $category . "', stocked='" . $stocked . "', picname='" . $picname . "'  WHERE productid='" . $productid . "'";
             if ($conn->query($sql) != TRUE)
             {
                 $conn->close();
