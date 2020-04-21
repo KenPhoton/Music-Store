@@ -57,7 +57,7 @@
             $sql = "INSERT INTO Discount (productid, discountcode, issuedate, count, active) VALUES (" . $productid . ",'" . $discountcode . "','" . $issuedate . "'," . $count . "," . $active . ")";
 
             if ($conn->query($sql) === TRUE) {
-                $discountid = $conn->discountid;
+                $discountid = $conn->insert_id;
                 $conn->close();
 			    returnWithInfo($discountid, $discountcode, $issuedate, $count);
             } else {
@@ -76,7 +76,7 @@
 		$retValue = '{"discountid":"","discountcode":"","issuedate":"","count":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
-	function returnWithInfo( $discountid, $discountcode, $issuedate)
+	function returnWithInfo( $discountid, $discountcode, $issuedate, $count)
 	{
 		$retValue = '{"discountid":"' . $discountid . '","discountcode":"' . $discountcode . '","issuedate":"' . $issuedate . '","count":"' . $count . '","error":""}';
 		sendResultInfoAsJson( $retValue );
