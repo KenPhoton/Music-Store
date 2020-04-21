@@ -252,7 +252,7 @@ function searchPurchaseHistory()
                     var table = document.getElementById("purchaseList");
                     table.deleteTHead();
                     var newPurchase = table.createTHead();
-                    newPurchase.outerHTML='<thead class="thead-light"><colgroup><col span="1" style="width: 15%;"><col span="1" style="width: 15%;"><col span="1" style="width: 20%;"><col span="1" style="width: 30%;"><col span="1" style="width: 20%;"></colgroup></>';
+                    newPurchase.outerHTML='<thead class="thead-light"><colgroup><col span="1" style="width: 3%;"><col span="1" style="width: 15%;"><col span="1" style="width: 8%;"><col span="1" style="width: 20%;"><col span="1" style="width: 13%;"><col span="1" style="width: 9%;"><col span="1" style="width: 12%;"><col span="1" style="width: 10;"><col span="1" style="width: 10%;"></colgroup></>';
                     
                     for (var i = jsonObject.results.length - 1; i >= 0; i--)
                     {
