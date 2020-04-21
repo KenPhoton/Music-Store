@@ -28,7 +28,7 @@
             returnWithError("Price must be numeric.");
 		}
 		else {
-			$sql = "INSERT INTO Product (productname, fullprice, description, category, stocked, picname) VALUES (" . $productname . "," . $fullprice . ",'" . $description . "','" . $category . "'," . $stocked . ",'" . $picname . "')";
+			$sql = "INSERT INTO Product (productname, fullprice, description, category, stocked, picname) VALUES ('" . $productname . "'," . $fullprice . ",'" . $description . "','" . $category . "'," . $stocked . ",'" . $picname . "')";
 			if ($conn->query($sql) === TRUE) {
 				$productid = $conn->insert_id;
 				$conn->close();
