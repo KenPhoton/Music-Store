@@ -99,7 +99,12 @@ function purchaseProduct()
                     var y = d.getFullYear();
                     var someFormattedDate = mm + '/'+ dd + '/'+ y;
                     alert(alerttext + "Successfully finalized purchase! Your discount code expires at 11:59 PM on " + someFormattedDate + ". The current number of purchases associated with this discount is " + count + ".");
-                    window.location.reload();
+                    document.getElementById("fname").value = "";
+                    document.getElementById("lname").value = "";
+                    document.getElementById("email").value = "";
+                    document.getElementById("address").value = "";
+                    document.getElementById("creditnum").value = "";
+                    document.getElementById("discountcode").value = "";
                 }
             }
 		}
