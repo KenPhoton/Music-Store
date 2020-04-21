@@ -45,7 +45,7 @@ function adminSearchProducts()
                     hideOrShow( "productList", true );
                     var jsonObject = JSON.parse( xhr.responseText );
                     var table = document.getElementById("productList");
-                    table.deleteTHead();
+                    table.innerHTML = "";
                     var newProduct = table.createTHead();
                     newProduct.outerHTML='<thead class="thead-light"><colgroup><col span="1" style="width: 3%;"><col span="1" style="width: 15%;"><col span="1" style="width: 8%;"><col span="1" style="width: 20%;"><col span="1" style="width: 13%;"><col span="1" style="width: 9%;"><col span="1" style="width: 12%;"><col span="1" style="width: 10;"><col span="1" style="width: 10%;"></colgroup></>';
 
@@ -250,7 +250,7 @@ function searchPurchaseHistory()
                     hideOrShow( "purchaseList", true );
                     var jsonObject = JSON.parse( xhr.responseText );
                     var table = document.getElementById("purchaseList");
-                    table.deleteTHead();
+                    table.innerHTML = "";
                     var newPurchase = table.createTHead();
                     newPurchase.outerHTML='<thead class="thead-light"><colgroup><col span="1" style="width: 15%;"><col span="1" style="width: 15%;"><col span="1" style="width: 20%;"><col span="1" style="width: 30%;"><col span="1" style="width: 20%;"></colgroup></>';
                     
@@ -377,7 +377,7 @@ function getDiscounts()
                     hideOrShow( "discountList", true );
                     var jsonObject = JSON.parse( xhr.responseText );
                     var table = document.getElementById("discountList");
-					table.deleteTHead();
+					table.innerHTML = "";
                     var newDiscount = table.createTHead();
                     newDiscount.outerHTML='<thead class="thead-light"><colgroup><col span="1" style="width: 5%;"><col span="1" style="width: 20%;"><col span="1" style="width: 20%;"><col span="1" style="width: 12.5%;"><col span="1" style="width: 12.5%;"><col span="1" style="width: 20%;"></colgroup></thead>';
                     
