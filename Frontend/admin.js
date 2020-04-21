@@ -388,7 +388,7 @@ function getDiscounts()
                         var newDiscountinfo = table.getElementsByTagName('thead')[0].insertRow(0);
                         newDiscountinfo.scope = "row";
                         newDiscountinfo.value = "1";
-                        var idstring = jsonObjectTwo.discountid + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" + jsonObjectTwo.productid;
+                        var idstring = jsonObjectTwo.discountid + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" + jsonObjectTwo.productid;
                         newDiscountinfo.insertCell(0).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+idstring+"</th>";
 						newDiscountinfo.insertCell(1).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.discountcode+"</th>";
                         newDiscountinfo.insertCell(2).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.issuedate+"</th>";
