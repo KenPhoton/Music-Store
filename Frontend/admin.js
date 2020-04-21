@@ -291,6 +291,67 @@ function searchPurchaseHistory()
     }
 }
 
+function searchPurchaseHistoryByDID() 
+{
+    var search = document.getElementById("inlineFormInputName2").value;
+    
+    if (localStorage.hasOwnProperty("userid"))
+    {
+        var xhr= new XMLHttpRequest();
+        xhr.open("POST","./searchpurchasehistorybydid.php",false);
+        xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
+        var jsonPayload = '{"search" : "' + search + '"}';
+        
+        try
+        {
+            xhr.onreadystatechange = function()
+            {
+                if (this.readyState == 4 && this.status == 200)
+                {
+                    hideOrShow( "purchaseList", true );
+                    var jsonObject = JSON.parse( xhr.responseText );
+                    var table = document.getElementById("purchaseList");
+                    table.innerHTML = "";
+                    var newPurchase = table.createTHead();
+                    newPurchase.outerHTML='<thead class="thead-light"><colgroup><col span="1" style="width: 15%;"><col span="1" style="width: 15%;"><col span="1" style="width: 20%;"><col span="1" style="width: 30%;"><col span="1" style="width: 20%;"></colgroup></>';
+                    
+                    for (var i = jsonObject.results.length - 1; i >= 0; i--)
+                    {
+                        //var opt = document.createElement("option");
+                        var jsonObjectTwo = jsonObject.results[i];
+                        var newPurchaseinfo = table.getElementsByTagName('thead')[0].insertRow(0);
+                        newPurchaseinfo.scope = "row";
+                        newPurchaseinfo.value = "1";
+                        var idstring = jsonObjectTwo.purchaseid + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" + jsonObjectTwo.productid + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" + jsonObjectTwo.discountid;
+						var namestring = jsonObjectTwo.fname + " " + jsonObjectTwo.lname;
+                        newPurchaseinfo.insertCell(0).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+idstring+"</th>";
+                        newPurchaseinfo.insertCell(1).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+namestring+"</th>";
+						newPurchaseinfo.insertCell(2).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.email+"</th>";
+						newPurchaseinfo.insertCell(3).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.address+"</th>";
+                        newPurchaseinfo.insertCell(4).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.creditnum+"</th>";
+                        //var newRow = table.rows[0];
+                        //table.parent.insertBefore(newRow, table.rows[1]);
+                        //alert(ContactName);
+                        //opt.text = ContactName;
+                        //opt.value = "";
+                        //contactList.options.add(opt);
+                    }
+                }
+            };
+            xhr.send(jsonPayload);
+        }
+        catch(err)
+        {
+            document.getElementById("purchaseSearchResult").innerHTML = err.message;
+            alert("BIG ERROR BRO");
+        }
+    }
+    else 
+    {
+        window.location.assign("index.html");
+    }
+}
+
 function editPolicy() {
 	if (localStorage.hasOwnProperty("userid"))
     {
