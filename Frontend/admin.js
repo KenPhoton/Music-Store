@@ -57,7 +57,7 @@ function adminSearchProducts()
                         //var opt = document.createElement("option");
                         var jsonObjectTwo = jsonObject.results[i];
                         var productname = jsonObjectTwo.productname;
-                        var newProductinfo = newProduct.insertRow();
+                        var newProductinfo = table.getElementsByTagName('thead')[0].insertRow();
                         newProductinfo.scope = "row";
 						newProductinfo.value = "1";
                         newProductinfo.insertCell(0).outerHTML = '<th style="font-size: small" scope="col">'+jsonObjectTwo.productid+"&nbsp;</th>";
