@@ -36,7 +36,7 @@
         } else {
             $err = $conn->error();
             $conn->close();
-            returnWithError( "Failed to finalize purchase: " . $err . "");
+            returnWithError( $err );
         }     
 	}
 	function sendResultInfoAsJson( $obj )
