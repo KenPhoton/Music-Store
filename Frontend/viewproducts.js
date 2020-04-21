@@ -105,7 +105,7 @@ function purchaseProduct()
 		}
 		catch(err)
 		{
-			alert(err.message);
+			alert(err.message + " " + xhr2.responseText + " " + xhr.responseText);
 		}
 	}
 }
