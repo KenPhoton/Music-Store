@@ -13,9 +13,6 @@
     $email = $_POST["email"];
     $address = $_POST["address"];
     $creditnum = $_POST["creditnum"];
-
-    if (strlen($creditnum > 20))
-        returnWithError("Credit number exceeds maximum");
     
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -25,22 +22,27 @@
 	}
 	else
 	{
-        $sql = "INSERT INTO Purchase (productid, discountid, fname, lname, email, address, creditnum) VALUES (" . $productid . ", " . $discountid . ", '" . $fname . "', '" . $lname . "', '" . $email . "', '" . $address . "', '" . $creditnum . "')";
-        if ($conn->query($sql) === TRUE) {
-            $purchaseid = $conn->insert_id;
-            $sql = "UPDATE Discount SET count=count+1 WHERE discountid=" . $discountid . "";
+        if (strlen($creditnum > 20))
+            returnWithError("Credit number exceeds maximum");
+        else
+        {
+            $sql = "INSERT INTO Purchase (productid, discountid, fname, lname, email, address, creditnum) VALUES (" . $productid . ", " . $discountid . ", '" . $fname . "', '" . $lname . "', '" . $email . "', '" . $address . "', '" . $creditnum . "')";
             if ($conn->query($sql) === TRUE) {
-                $conn->close();
-                returnWithInfo($purchaseid);
+                $purchaseid = $conn->insert_id;
+                $sql = "UPDATE Discount SET count=count+1 WHERE discountid=" . $discountid . "";
+                if ($conn->query($sql) === TRUE) {
+                    $conn->close();
+                    returnWithInfo($purchaseid);
+                } else {
+                    $conn->close();
+                    returnWithError( "Failed to update discount code use count" );
+                }
             } else {
+                $err = $conn->error();
                 $conn->close();
-                returnWithError( "Failed to update discount code use count" );
-            }
-        } else {
-            $err = $conn->error();
-            $conn->close();
-            returnWithError( $err );
-        }     
+                returnWithError( $err );
+            }     
+        }
 	}
 	function sendResultInfoAsJson( $obj )
 	{
