@@ -8,6 +8,11 @@ body {
 	
 }
 
+footer {
+    text-align: center;    
+    bottom: 0px; 
+}
+
 ul
 {
 	text-align: center;
