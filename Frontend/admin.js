@@ -245,7 +245,7 @@ function searchPurchaseHistory()
                         var newPurchaseinfo = table.getElementsByTagName('thead')[0].insertRow(0);
                         newPurchaseinfo.scope = "row";
                         newPurchaseinfo.value = "1";
-                        var idstring = jsonObjectTwo.purchaseid + "     " + jsonObjectTwo.productid + "     " + jsonObjectTwo.discountid;
+                        var idstring = jsonObjectTwo.purchaseid + "&nbsp&nbsp&nbsp&nbsp&nbsp" + jsonObjectTwo.productid + "&nbsp&nbsp&nbsp&nbsp&nbsp" + jsonObjectTwo.discountid;
 						var namestring = jsonObjectTwo.fname + " " + jsonObjectTwo.lname;
                         newPurchaseinfo.insertCell(0).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+idstring+"</th>";
                         newPurchaseinfo.insertCell(1).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+namestring+"</th>";
