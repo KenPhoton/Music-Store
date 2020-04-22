@@ -43,8 +43,7 @@
                 } else {
                     echo "Error updating record: " . $conn->error;
                 }
-            }  
-            $conn->close();
+            } 
 		}
 		else
 		{
