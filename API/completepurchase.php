@@ -22,6 +22,8 @@
 	}
 	else
 	{
+        $creditnum = str_replace(" ","",$creditnum);
+        $creditnum = str_replace("-","",$creditnum);
         if (strlen($creditnum) > 20)
             returnWithError("Credit number exceeds maximum");
         else
