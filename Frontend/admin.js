@@ -420,7 +420,7 @@ function searchDiscountsByDID()
         var xhr= new XMLHttpRequest();
         xhr.open("POST","./getdiscount.php",false);
         xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
-        var jsonPayload = '{}';
+        var jsonPayload = '{"search" : "' + search + '"}';
         
         try
         {
@@ -481,7 +481,7 @@ function searchDiscountsByPID()
         var xhr= new XMLHttpRequest();
         xhr.open("POST","./getdiscountsbypid.php",false);
         xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
-        var jsonPayload = '{}';
+        var jsonPayload = '{"search" : "' + search + '"}';
         
         try
         {
