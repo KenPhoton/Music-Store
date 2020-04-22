@@ -24,8 +24,8 @@
 	{
         $creditnum = str_replace(" ","",$creditnum);
         $creditnum = str_replace("-","",$creditnum);
-        if (strlen($creditnum) > 20)
-            returnWithError("Credit number exceeds maximum");
+        if (!is_numeric($creditnum) || strlen($creditnum) > 20)
+            returnWithError("Invalid credit number");
         else
         {
             $sql = "INSERT INTO Purchase (productid, discountid, fname, lname, email, address, creditnum) VALUES (" . $productid . ", " . $discountid . ", '" . $fname . "', '" . $lname . "', '" . $email . "', '" . $address . "', '" . $creditnum . "')";
