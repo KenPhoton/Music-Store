@@ -540,7 +540,7 @@ function editPolicy() {
 		var xhr= new XMLHttpRequest();
         xhr.open("POST","./editpolicy.php",false);
         xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
-        var jsonPayload = '{"policyvalue" : "' + policyvalue + '"}';
+        var jsonPayload = '{"policyvalue" :' + policyvalue + '}';
         
         try
         {
