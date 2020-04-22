@@ -410,6 +410,128 @@ function searchPurchaseHistoryByPID()
     }
 }
 
+function searchDiscountsByDID() 
+{
+    var search = document.getElementById("inlineFormInputName2").value;
+    document.getElementById("inlineFormInputName2").value = "";
+    
+    if (localStorage.hasOwnProperty("userid"))
+    {
+        var xhr= new XMLHttpRequest();
+        xhr.open("POST","./getdiscount.php",false);
+        xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
+        var jsonPayload = '{}';
+        
+        try
+        {
+            xhr.onreadystatechange = function()
+            {
+                if (this.readyState == 4 && this.status == 200)
+                {
+                    hideOrShow( "discountList", true );
+                    var jsonObject = JSON.parse( xhr.responseText );
+                    var table = document.getElementById("discountList");
+					table.innerHTML = "";
+                    var newDiscount = table.createTHead();
+                    newDiscount.outerHTML='<thead class="thead-light"><colgroup><col span="1" style="width: 5%;"><col span="1" style="width: 20%;"><col span="1" style="width: 20%;"><col span="1" style="width: 12.5%;"><col span="1" style="width: 12.5%;"><col span="1" style="width: 20%;"></colgroup></thead>';
+                    
+                    for (var i = jsonObject.results.length - 1; i >= 0; i--)
+                    {
+                        //var opt = document.createElement("option");
+                        var jsonObjectTwo = jsonObject.results[i];
+                        var newDiscountinfo = table.getElementsByTagName('thead')[0].insertRow(0);
+                        newDiscountinfo.scope = "row";
+                        newDiscountinfo.value = "1";
+                        var idstring = jsonObjectTwo.discountid + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" + jsonObjectTwo.productid;
+                        newDiscountinfo.insertCell(0).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+idstring+"</th>";
+						newDiscountinfo.insertCell(1).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.discountcode+"</th>";
+                        newDiscountinfo.insertCell(2).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.issuedate+"</th>";
+						newDiscountinfo.insertCell(3).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.count+"</th>";
+						newDiscountinfo.insertCell(4).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.active+"</th>";
+                        newDiscountinfo.insertCell(5).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.finaldiscount+"</th>";
+                        //var newRow = table.rows[0];
+                        //table.parent.insertBefore(newRow, table.rows[1]);
+                        //alert(ContactName);
+                        //opt.text = ContactName;
+                        //opt.value = "";
+                        //contactList.options.add(opt);
+                    }
+                }
+            };
+            xhr.send(jsonPayload);
+        }
+        catch(err)
+        {
+            alert("BIG ERROR BRO: " + err);
+        }
+    }
+    else 
+    {
+        window.location.assign("index.html");
+    }
+}
+
+function searchDiscountsByPID() 
+{
+    var search = document.getElementById("inlineFormInputName3").value;
+    document.getElementById("inlineFormInputName3").value = "";
+    
+    if (localStorage.hasOwnProperty("userid"))
+    {
+        var xhr= new XMLHttpRequest();
+        xhr.open("POST","./getdiscountsbypid.php",false);
+        xhr.setRequestHeader("Content-type","application/json; charset=UTF-8");
+        var jsonPayload = '{}';
+        
+        try
+        {
+            xhr.onreadystatechange = function()
+            {
+                if (this.readyState == 4 && this.status == 200)
+                {
+                    hideOrShow( "discountList", true );
+                    var jsonObject = JSON.parse( xhr.responseText );
+                    var table = document.getElementById("discountList");
+					table.innerHTML = "";
+                    var newDiscount = table.createTHead();
+                    newDiscount.outerHTML='<thead class="thead-light"><colgroup><col span="1" style="width: 5%;"><col span="1" style="width: 20%;"><col span="1" style="width: 20%;"><col span="1" style="width: 12.5%;"><col span="1" style="width: 12.5%;"><col span="1" style="width: 20%;"></colgroup></thead>';
+                    
+                    for (var i = jsonObject.results.length - 1; i >= 0; i--)
+                    {
+                        //var opt = document.createElement("option");
+                        var jsonObjectTwo = jsonObject.results[i];
+                        var newDiscountinfo = table.getElementsByTagName('thead')[0].insertRow(0);
+                        newDiscountinfo.scope = "row";
+                        newDiscountinfo.value = "1";
+                        var idstring = jsonObjectTwo.discountid + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" + jsonObjectTwo.productid;
+                        newDiscountinfo.insertCell(0).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+idstring+"</th>";
+						newDiscountinfo.insertCell(1).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.discountcode+"</th>";
+                        newDiscountinfo.insertCell(2).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.issuedate+"</th>";
+						newDiscountinfo.insertCell(3).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.count+"</th>";
+						newDiscountinfo.insertCell(4).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.active+"</th>";
+                        newDiscountinfo.insertCell(5).outerHTML = '<th style="font-size: small; text-align: center" scope="col">'+jsonObjectTwo.finaldiscount+"</th>";
+                        //var newRow = table.rows[0];
+                        //table.parent.insertBefore(newRow, table.rows[1]);
+                        //alert(ContactName);
+                        //opt.text = ContactName;
+                        //opt.value = "";
+                        //contactList.options.add(opt);
+                    }
+                }
+            };
+            xhr.send(jsonPayload);
+        }
+        catch(err)
+        {
+            alert("BIG ERROR BRO: " + err);
+        }
+    }
+    else 
+    {
+        window.location.assign("index.html");
+    }
+}
+
 function editPolicy() {
 	if (localStorage.hasOwnProperty("userid"))
     {
