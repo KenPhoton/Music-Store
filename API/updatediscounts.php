@@ -39,7 +39,7 @@
 
                 $sql = "UPDATE Discount SET active=0, finaldiscount='" . $value . "' WHERE discountid=" . $discountid . "";
                 if ($conn->query($sql) === TRUE) {
-                    echo "Record updated successfully";
+                    echo "Record updated successfully. ";
                 } else {
                     echo "Error updating record: " . $conn->error;
                 }
@@ -48,9 +48,18 @@
 		}
 		else
 		{
+            $output = "No records updated. ";
+        } 
+        
+        $sql = "DELETE FROM Discount WHERE count=0";
+        $result = $conn->query($sql);
+		if ($conn->query($sql) === TRUE) {
             $conn->close();
-            echo "No records updated";
-		}  
+        } else {
+            $conn->close();
+            $output += "Error deleting entries.";
+            echo $output;
+        }
 	}
 	function sendResultInfoAsJson( $obj )
 	{
