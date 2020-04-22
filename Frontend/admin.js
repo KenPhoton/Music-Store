@@ -348,7 +348,7 @@ function searchPurchaseHistoryByDID()
     }
 }
 
-function searchPurchaseHistoryByDID() 
+function searchPurchaseHistoryByPID() 
 {
     var search = document.getElementById("inlineFormInputName3").value;
     document.getElementById("inlineFormInputName3").value = "";
