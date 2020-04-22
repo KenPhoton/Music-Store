@@ -24,19 +24,24 @@
 
 		if ($stocked != 0 && $stocked != 1)
             returnWithError("Stocked must be 0 or 1.");
-        else if (!is_numeric($fullprice)) {
-            returnWithError("Price must be numeric.");
+		else if (!is_numeric($fullprice) || $fullprice <= 0) {
+				returnWithError("Price must be numeric.");
 		}
 		else {
-			$sql = "INSERT INTO Product (productname, fullprice, description, category, stocked, picname) VALUES ('" . $productname . "'," . $fullprice . ",'" . $description . "','" . $category . "'," . $stocked . ",'" . $picname . "')";
-			if ($conn->query($sql) === TRUE) {
-				$productid = $conn->insert_id;
-				$conn->close();
-				returnWithInfo($productid);
-			} else {
-				$val = $conn->error;
-				$conn->close();
-				returnWithError($val);
+			$fullprice = number_format((float)$fullprice, 2, '.', '');
+			if (strlen($fullprice) > 8)
+				returnWithError("Invalid input");
+			else {
+				$sql = "INSERT INTO Product (productname, fullprice, description, category, stocked, picname) VALUES ('" . $productname . "'," . $fullprice . ",'" . $description . "','" . $category . "'," . $stocked . ",'" . $picname . "')";
+				if ($conn->query($sql) === TRUE) {
+					$productid = $conn->insert_id;
+					$conn->close();
+					returnWithInfo($productid);
+				} else {
+					$val = $conn->error;
+					$conn->close();
+					returnWithError($val);
+				}
 			}
 		}
 	}

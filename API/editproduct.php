@@ -22,21 +22,26 @@
 
         if ($stocked != 0 && $stocked != 1)
             returnWithError("Stocked must be 0 or 1.");
-        else if (!is_numeric($fullprice)) {
+        else if (!is_numeric($fullprice) || $fullprice <= 0) {
             returnWithError("Price must be numeric.");
         }
         else {
-            $sql = "UPDATE Product SET productname='" . $productname . "', fullprice='" . $fullprice . "', description='" . $description . "', category='" . $category . "', stocked='" . $stocked . "', picname='" . $picname . "'  WHERE productid='" . $productid . "'";
-            if ($conn->query($sql) != TRUE)
-            {
-                $conn->close();
-                returnWithError( "Error updating product" );
-            }
-            else
-            {
-                $conn->close();
-                $message = '{"error":"", "result":"edited product"}';
-                sendResultInfoAsJson($message);
+            $fullprice = number_format((float)$fullprice, 2, '.', '');
+			if (strlen($fullprice) > 8)
+				returnWithError("Invalid input");
+			else {
+                $sql = "UPDATE Product SET productname='" . $productname . "', fullprice='" . $fullprice . "', description='" . $description . "', category='" . $category . "', stocked='" . $stocked . "', picname='" . $picname . "'  WHERE productid='" . $productid . "'";
+                if ($conn->query($sql) != TRUE)
+                {
+                    $conn->close();
+                    returnWithError( "Error updating product" );
+                }
+                else
+                {
+                    $conn->close();
+                    $message = '{"error":"", "result":"edited product"}';
+                    sendResultInfoAsJson($message);
+                }
             }
         }
     }
