@@ -16,7 +16,7 @@
 	{
         //purchaseid,productid,discountid,fname,lname,email,address,creditnum
 		$_POST = json_decode(file_get_contents('php://input'), true);
-		$sql = "SELECT pu.purchaseid, pu.productid, pu.discountid, pu.fname, pu.lname, pu.email, pu.address, pu.creditnum FROM Purchase pu, Product pr where pu.productid=pr.productid and (pr.category like '%" . $_POST["search"] . "%' or pu.productid like '%" . $_POST["search"] . "%' or pu.discountid like '%" . $_POST["search"] . "%' or pu.fname like '%" . $_POST["search"] . "%' or pu.lname like '%" . $_POST["search"] . "%' or pu.email like '%" . $_POST["search"] . "%' or pu.address like '%" . $_POST["search"] . "%' or pu.creditnum like '%" . $_POST["search"] . "%')";
+		$sql = "SELECT pu.purchaseid, pu.productid, pu.discountid, pu.fname, pu.lname, pu.email, pu.address, pu.creditnum FROM Purchase pu, Product pr where (pr.category like '%" . $_POST["search"] . "%' or pu.productid like '%" . $_POST["search"] . "%' or pu.discountid like '%" . $_POST["search"] . "%' or pu.fname like '%" . $_POST["search"] . "%' or pu.lname like '%" . $_POST["search"] . "%' or pu.email like '%" . $_POST["search"] . "%' or pu.address like '%" . $_POST["search"] . "%' or pu.creditnum like '%" . $_POST["search"] . "%') and pu.productid=pr.productid";
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{
