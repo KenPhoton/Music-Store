@@ -45,7 +45,7 @@
                     $sql2 = "SELECT productname, fullprice FROM Product WHERE productid=" . $productid . "";
                     $result2 = $conn->query($sql2);
                     $row2 = $result2->fetch_assoc();
-                    echo "\tName: " . $row2['productname'] . "\tPrice: $" . $row2['fullprice'] . "\r\n";
+                    echo "\tProduct ID: " . $productid . "\tName: " . $row2['productname'] . "\tPrice: $" . $row2['fullprice'] . "\r\n";
                     echo "This record is associated with the following purchases:\r\n";
                     $sql3 = "SELECT * FROM Purchase WHERE discountid=" . $discountid . "";
                     $result3 = $conn->query($sql3);
