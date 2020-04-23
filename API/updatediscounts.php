@@ -27,19 +27,34 @@
 	else
 	{
         $date = date('Y-m-d', time());
-        $sql = "SELECT a.discountid, a.count, b.policyvalue FROM Discount a, Policy b WHERE active=1 and issuedate between '2020-01-01' and DATE_SUB('" . $date . "', INTERVAL 7 DAY)";
+        $sql = "SELECT a.discountid, a.productid, a.count, b.policyvalue FROM Discount a, Policy b WHERE active=1 and issuedate between '2020-01-01' and DATE_SUB('" . $date . "', INTERVAL 7 DAY)";
         $result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{
 			while($row = $result->fetch_assoc()) {
                 $discountid = $row["discountid"];
+                $productid = $row["productid"];
                 $count = $row["count"];
                 $policyvalue = $row["policyvalue"];
                 $value = calcFinalDiscount($count, $policyvalue);
 
                 $sql = "UPDATE Discount SET active=0, finaldiscount='" . $value . "' WHERE discountid=" . $discountid . "";
                 if ($conn->query($sql) === TRUE) {
-                    echo "Record updated successfully. ";
+                    echo "\r\n\r\nDiscount with ID " . $discountid . " expired. Final discount: " . $value . " percent.\r\n";
+                    echo "This record is associated with the following product:\r\n";
+                    $sql2 = "SELECT productname, fullprice FROM Product WHERE productid=" . $productid . "";
+                    $result2 = $conn->query($sql2);
+                    $row2 = $result2->fetch_assoc();
+                    echo "\tProduct ID: " . $productid . "\tName: " . $row2['productname'] . "\tPrice: $" . $row2['fullprice'] . "\r\n";
+                    echo "This record is associated with the following purchases:\r\n";
+                    $sql3 = "SELECT * FROM Purchase WHERE discountid=" . $discountid . "";
+                    $result3 = $conn->query($sql3);
+                    if ($result3->num_rows > 0)
+                    {
+                        while($row3 = $result3->fetch_assoc()) {
+                            echo "\tPurchase ID: " . $row3['purchaseid'] . "\tName: " . $row3['fname'] . " " . $row3['lname'] . "\tEmail: " . $row3['email'] . "\tAddress: " . $row3['address'] . "\tCredit#: " . $row3['creditnum'] . "\r\n";
+                        }
+                    }
                 } else {
                     echo "Error updating record: " . $conn->error;
                 }
