@@ -45,7 +45,7 @@
                     $sql2 = "SELECT productname, fullprice FROM Product WHERE productid=" . $productid . "";
                     $result2 = $conn->query($sql2);
                     $row2 = $result2->fetch_assoc();
-                    echo "\tProduct ID: " . $productid . "\tName: " . $row2['productname'] . "\tPrice: $" . $row2['fullprice'] . "\r\n";
+                    echo "\tName: " . $row2['productname'] . "\tPrice: $" . $row2['fullprice'] . "\r\n";
                     echo "This record is associated with the following purchases:\r\n";
                     $sql3 = "SELECT * FROM Purchase WHERE discountid=" . $discountid . "";
                     $result3 = $conn->query($sql3);
@@ -54,6 +54,7 @@
                         while($row3 = $result3->fetch_assoc()) {
                             echo "\tPurchase ID: " . $row3['purchaseid'] . "\tName: " . $row3['fname'] . " " . $row3['lname'] . "\tEmail: " . $row3['email'] . "\tAddress: " . $row3['address'] . "\tCredit#: " . $row3['creditnum'] . "\r\n";
                         }
+                        echo "\r\n";
                     }
                 } else {
                     echo "Error updating record: " . $conn->error;
