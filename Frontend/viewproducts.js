@@ -74,9 +74,9 @@ function purchaseProduct()
 			else
 			{
                 if (jsonObject2.discountcode == discountcode)
-                    alerttext += "Successfully verified discount code: " + jsonObject2.discountcode + ". ";
+                    alerttext += "Successfully verified discount code: " + jsonObject2.discountcode + ".\n";
                 else
-                    alerttext += "Generated a new discount code: " + jsonObject2.discountcode + ". ";
+                    alerttext += "Generated a new discount code: " + jsonObject2.discountcode + ".\n";
 
                 var jsonPayload2 = '{"productid":'+productid+',"discountid":'+jsonObject2.discountid+',"fname":"'+fname+'","lname":"'+lname+'","email":"'+email+'","address":"'+address+'","creditnum":"'+creditnum+'"}'; 
 
@@ -99,7 +99,7 @@ function purchaseProduct()
                     var mm = d.getMonth() + 1;
                     var y = d.getFullYear();
                     var someFormattedDate = mm + '/'+ dd + '/'+ y;
-                    alert(alerttext + "Successfully finalized purchase! Your discount code expires at 11:59 PM on " + someFormattedDate + ". The current number of purchases associated with this discount is " + count + ".");
+                    alert(alerttext + "Successfully finalized purchase! Your discount code expires at 11:59 PM EDT on " + someFormattedDate + ".\nThe current number of purchases associated with this discount is " + count + ".");
                     document.getElementById("fname").value = "";
                     document.getElementById("lname").value = "";
                     document.getElementById("email").value = "";
