@@ -2,7 +2,7 @@
     function calcFinalDiscount($buyers, $interval) {
         $j = 1;
         $sum = 0.0;
-        for ($i = 0.0; $j <= $buyers; $i = $i + $interval) {
+        for ($i = 0.0; $j <= ($buyers-1); $i = $i + $interval) {
             $sum = $sum + $i;
             if ($i >= 49.99) {
                 $i = $interval;
